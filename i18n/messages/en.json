@@ -1,0 +1,51 @@
+{
+    "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "subscriptions": "Subscriptions",
+    "usage": "Usage",
+    "device": "Device",
+    "billing": "Billing",
+    "support": "Support"
+  },
+  "dashboard": {
+    "welcome": "Welcome {name}",
+    "activeSubscriptions": "Active Subscription",
+    "connectedDevices": "Connected Device",
+    "totalUsage": "Total Usage",
+    "monthlyBill": "Total Monthly Bill",
+    "currency": "YER"
+  },
+  "subscriptionStatus": {
+    "active": "Active",
+    "suspended": "Suspended",
+    "expired": "Expired",
+    "pending": "Pending"
+  },
+  "deviceStatus": {
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "restarting": "Restarting"
+  },
+  "common": {
+    "viewAll": "View All",
+    "addNew": "Add New",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "alerts": {
+    "subscriptionAlert": "Subscription Alert",
+    "dataAlert": "Data Usage Alert",
+    "suspendedSubscriptions": "There are {count} suspended subscriptions. Please check billing.",
+    "highDataUsage": "Some subscriptions are approaching their monthly data limit."
+  },
+  "theme": {
+    "toggleTheme": "Toggle Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode"
+  }
+}

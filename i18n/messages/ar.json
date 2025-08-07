@@ -1,0 +1,51 @@
+{
+    "HomePage": {
+        "title": "مرحبا",
+        "about": "Go to the about page"
+    },
+    "navigation": {
+        "dashboard": "الرئيسية",
+        "subscriptions": "الاشتراكات",
+        "usage": "الاستهلاك",
+        "device": "الجهاز",
+        "billing": "الفواتير",
+        "support": "الدعم"
+    },
+    "dashboard": {
+        "welcome": "مرحباً {name}",
+        "activeSubscriptions": "اشتراك نشط",
+        "connectedDevices": "جهاز متصل",
+        "totalUsage": "إجمالي الاستهلاك",
+        "monthlyBill": "إجمالي الفاتورة الشهرية",
+        "currency": "ريال"
+    },
+    "subscriptionStatus": {
+        "active": "نشط",
+        "suspended": "معلق",
+        "expired": "منتهي",
+        "pending": "قيد المراجعة"
+    },
+    "deviceStatus": {
+        "connected": "متصل",
+        "disconnected": "غير متصل",
+        "restarting": "إعادة تشغيل"
+    },
+    "common": {
+        "viewAll": "عرض الكل",
+        "addNew": "إضافة جديد",
+        "loading": "جاري التحميل...",
+        "error": "خطأ",
+        "success": "تم بنجاح"
+    },
+    "alerts": {
+        "subscriptionAlert": "تنبيه الاشتراكات",
+        "dataAlert": "تنبيه استهلاك البيانات",
+        "suspendedSubscriptions": "يوجد {count} اشتراك معلق. يرجى مراجعة الفواتير.",
+        "highDataUsage": "بعض الاشتراكات اقتربت من حد الاستهلاك الشهري."
+    },
+    "theme": {
+        "toggleTheme": "تبديل المظهر",
+        "lightMode": "المظهر الفاتح",
+        "darkMode": "المظهر الداكن"
+    }
+}
