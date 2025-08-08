@@ -1,7 +1,8 @@
 {
-    "HomePage": {
+  "HomePage": {
     "title": "Hello world!",
-    "about": "Go to the about page"
+    "about": "Go to the about page",
+    "toggle_theme": "Toggle theme"
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -9,6 +10,7 @@
     "usage": "Usage",
     "device": "Device",
     "billing": "Billing",
+    "profile": "Profile",
     "support": "Support"
   },
   "dashboard": {
@@ -35,6 +37,11 @@
     "addNew": "Add New",
     "loading": "Loading...",
     "error": "Error",
+    "starlink_portal": "Starlink Portal",
+    "error_500_title": "We couldn’t load all data",
+    "error_404_title": "Page Not Found",
+    "error_404_description": "Sorry, the page you are looking for does not exist. It might have been moved or deleted.",
+    "error_500_description": "We couldn’t transfer all data due to a technical issue. Please try again later or reach out to our support team if the issue persists.",
     "success": "Success"
   },
   "alerts": {
