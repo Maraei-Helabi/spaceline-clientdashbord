@@ -1,3 +1,11 @@
+import { SubscriptionsFilters } from "./components/SubscriptionsFilters";
+import { SubscriptionsList } from "./components/SubscriptionsList";
+
 export default function SubscriptionPage() {
-  return <div>Subscription Page</div>;
+  return (
+    <>
+      <SubscriptionsFilters />
+      <SubscriptionsList />
+      </>
+  )
 }
