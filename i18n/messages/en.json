@@ -15,7 +15,9 @@
   },
   "dashboard": {
     "welcome": "Welcome {name}",
-    "activeSubscriptions": "Active Subscription",
+    "starlinkSubscriptionCount": "{count} Starlink Subscription",
+    "activeSubscription": "Active Subscription",
+    "activeSubscriptions": "Active Subscriptions",
     "connectedDevices": "Connected Device",
     "totalUsage": "Total Usage",
     "monthlyBill": "Total Monthly Bill",

@@ -15,7 +15,9 @@
   },
   "dashboard": {
     "welcome": "مرحباً {name}",
-    "activeSubscriptions": "اشتراك نشط",
+    "starlinkSubscriptionCount": "{count} اشتراك ستارلينك ",
+    "activeSubscription": "اشتراك نشط",
+    "activeSubscriptions": "الاشتراكات النشطة",
     "connectedDevices": "جهاز متصل",
     "totalUsage": "إجمالي الاستهلاك",
     "monthlyBill": "إجمالي الفاتورة الشهرية",
