@@ -1,12 +1,15 @@
-import { useTranslations } from "next-intl";
+import { WelcomeSection } from "./welcome-section";
+import { DashboardStats } from "./dashboard-stats";
+import { DashboardActiveSubscriptions } from "./dashboard-active-subscriptions";
+import { DashboardSubscriptionAlert } from "./dashboard-subscription-alert";
 
 export default function HomePage() {
-  const t = useTranslations("HomePage");
-
   return (
-    <div>
-      Home Page
-      <h1>{t("title")}</h1>
+    <div className="p-4">
+      <WelcomeSection />
+      <DashboardStats />
+      <DashboardActiveSubscriptions />
+      <DashboardSubscriptionAlert />
     </div>
   );
 }

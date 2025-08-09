@@ -4,6 +4,8 @@ import { Toaster } from "react-hot-toast";
 import { setRequestLocale } from "next-intl/server";
 
 import "../globals.css";
+import { DirectionProvider } from "@/providers/direction-provider";
+import { SessionProvider } from "@/providers/session-provider";
 
 export default async function LocaleLayout({
   children,
@@ -30,11 +32,10 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Toaster />
-            {/* <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              ...existing code...
-            </header> */}
-            {children}
+            <DirectionProvider dir={dir}>
+              <Toaster />
+              <SessionProvider>{children}</SessionProvider>
+            </DirectionProvider>
           </ThemeProvider>
         </LocaleProvider>
       </body>
