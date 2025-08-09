@@ -41,6 +41,7 @@
     "error": "Error",
     "submit": "Submit",
     "login": "Login",
+    "logout": "Logout",
     "starlink_portal": "Starlink Portal",
     "error_500_title": "We couldn’t load all data",
     "error_404_title": "Page Not Found",

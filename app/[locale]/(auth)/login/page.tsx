@@ -14,6 +14,8 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
+import { signIn } from "next-auth/react";
+import { useTransition } from "react";
 
 const stepSchema = z.union([z.literal("phone"), z.literal("otp")]);
 
@@ -51,6 +53,8 @@ const Login = () => {
   const searchParams = useSearchParams();
   const queryStep = searchParams.get("step");
 
+  const [isPending, startTransition] = useTransition();
+
   const {
     register,
     handleSubmit,
@@ -79,7 +83,14 @@ const Login = () => {
       return;
     }
 
-    console.log("OTP submitted:", data.otp);
+    startTransition(async () => {
+      await signIn("credentials", {
+        redirect: false,
+        otp: data.otp,
+      });
+
+      router.push("/");
+    });
   };
 
   return (
@@ -105,7 +116,7 @@ const Login = () => {
 
         {step === "otp" && (
           <div dir="ltr" className="flex flex-col rtl:items-end">
-            <Label className="mb-2">{t('common.otp_code')}</Label>
+            <Label className="mb-2">{t("common.otp_code")}</Label>
             <Controller
               name="otp"
               render={({ field }) => (
@@ -128,7 +139,7 @@ const Login = () => {
           </div>
         )}
 
-        <Button type="submit" disabled={!isValid}>
+        <Button type="submit" disabled={!isValid || isPending}>
           {step === "phone" ? t("common.login") : t("common.submit")}
         </Button>
       </form>
