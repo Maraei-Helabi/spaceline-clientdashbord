@@ -42,6 +42,8 @@
     "submit": "Submit",
     "login": "Login",
     "logout": "Logout",
+    "edit": "Edit",
+    "changePassword": "Change Password",
     "starlink_portal": "Starlink Portal",
     "error_500_title": "We couldn’t load all data",
     "error_404_title": "Page Not Found",
