@@ -1,51 +1,72 @@
 {
-    "HomePage": {
-        "title": "مرحبا",
-        "about": "Go to the about page"
-    },
-    "navigation": {
-        "dashboard": "الرئيسية",
-        "subscriptions": "الاشتراكات",
-        "usage": "الاستهلاك",
-        "device": "الجهاز",
-        "billing": "الفواتير",
-        "support": "الدعم"
-    },
-    "dashboard": {
-        "welcome": "مرحباً {name}",
-        "activeSubscriptions": "اشتراك نشط",
-        "connectedDevices": "جهاز متصل",
-        "totalUsage": "إجمالي الاستهلاك",
-        "monthlyBill": "إجمالي الفاتورة الشهرية",
-        "currency": "ريال"
-    },
-    "subscriptionStatus": {
-        "active": "نشط",
-        "suspended": "معلق",
-        "expired": "منتهي",
-        "pending": "قيد المراجعة"
-    },
-    "deviceStatus": {
-        "connected": "متصل",
-        "disconnected": "غير متصل",
-        "restarting": "إعادة تشغيل"
-    },
-    "common": {
-        "viewAll": "عرض الكل",
-        "addNew": "إضافة جديد",
-        "loading": "جاري التحميل...",
-        "error": "خطأ",
-        "success": "تم بنجاح"
-    },
-    "alerts": {
-        "subscriptionAlert": "تنبيه الاشتراكات",
-        "dataAlert": "تنبيه استهلاك البيانات",
-        "suspendedSubscriptions": "يوجد {count} اشتراك معلق. يرجى مراجعة الفواتير.",
-        "highDataUsage": "بعض الاشتراكات اقتربت من حد الاستهلاك الشهري."
-    },
-    "theme": {
-        "toggleTheme": "تبديل المظهر",
-        "lightMode": "المظهر الفاتح",
-        "darkMode": "المظهر الداكن"
-    }
+  "HomePage": {
+    "title": "مرحبا",
+    "about": "Go to the about page",
+    "toggle_lang": "تغيير اللغة"
+  },
+  "navigation": {
+    "dashboard": "الرئيسية",
+    "subscriptions": "الاشتراكات",
+    "usage": "الاستهلاك",
+    "device": "الجهاز",
+    "billing": "الفواتير",
+    "profile": "الملف الشخصي",
+    "support": "الدعم"
+  },
+  "dashboard": {
+    "welcome": "مرحباً {name}",
+    "starlinkSubscriptionCount": "{count} اشتراك ستارلينك ",
+    "activeSubscription": "اشتراك نشط",
+    "activeSubscriptions": "الاشتراكات النشطة",
+    "connectedDevices": "جهاز متصل",
+    "totalUsage": "إجمالي الاستهلاك",
+    "monthlyBill": "إجمالي الفاتورة الشهرية",
+    "currency": "ريال"
+  },
+  "subscriptionStatus": {
+    "active": "نشط",
+    "suspended": "معلق",
+    "expired": "منتهي",
+    "pending": "قيد المراجعة"
+  },
+  "deviceStatus": {
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "restarting": "إعادة تشغيل"
+  },
+  "common": {
+    "viewAll": "عرض الكل",
+    "addNew": "إضافة جديد",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "submit": "تاكيد",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "edit": "تعديل",
+    "changePassword": "تغيير كلمة المرور",
+    "starlink_portal": "بوابة ستارلينك",
+    "error_500_title": "لم يتم استكمال الإجراء",
+    "error_404_title": "الصفحة غير موجودة",
+    "error_404_description": "عذرًا، الصفحة التي تبحث عنها غير موجودة. قد تكون قد تم نقلها أو حذفها.",
+    "error_500_description": "لم نتمكن من نقل جميع البيانات بسبب عطل فني. يرجى المحاولة مرة أخرى، وفي حال استمرار المشكلة، يرجى الإتصال بالدعم الفني.",
+    "success": "تم بنجاح",
+    "phone_number": "رقم الهاتف",
+    "enter_phone_number": "أدخل رقم هاتفك",
+    "otp_code": "رمز OTP"
+  },
+  "alerts": {
+    "subscriptionAlert": "تنبيه الاشتراكات",
+    "dataAlert": "تنبيه استهلاك البيانات",
+    "suspendedSubscriptions": "يوجد {count} اشتراك معلق. يرجى مراجعة الفواتير.",
+    "highDataUsage": "بعض الاشتراكات اقتربت من حد الاستهلاك الشهري."
+  },
+  "theme": {
+    "toggleTheme": "تبديل المظهر",
+    "lightMode": "المظهر الفاتح",
+    "darkMode": "المظهر الداكن"
+  },
+  "validation": {
+    "phone_number_at_least": "رقم الهاتف يجب أن يكون على الأقل {count} أرقام",
+    "required": "الحقل مطلوب"
+  }
 }

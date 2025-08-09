@@ -1,43 +1,43 @@
-import { NextIntlClientProvider, hasLocale } from 'next-intl';
-import './globals.css';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
-import { ThemeProvider } from "@/components/ThemeProvider"
-import arMessages from '@/i18n/messages/ar.json';
-import enMessages from '@/i18n/messages/en.json';
+import { ThemeProvider } from "@/providers/theme-provider";
+import { LocaleProvider } from "@/providers/locale-provider";
+import { Toaster } from "react-hot-toast";
+import { setRequestLocale } from "next-intl/server";
+
+import "../globals.css";
+import { DirectionProvider } from "@/providers/direction-provider";
+import { SessionProvider } from "@/providers/session-provider";
+
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 }) {
-  // Ensure that the incoming `locale` is valid
-
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
-
-  // تحديد الرسائل حسب اللغة
-  const messages = locale === 'ar' ? arMessages : enMessages;
-
+  const dir = locale === "ar" ? "rtl" : "ltr";
+  setRequestLocale(locale);
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+    <html
+      lang={locale}
+      dir={dir}
+      className="scroll-smooth"
+      suppressHydrationWarning
+    >
+      <body className="min-h-screen bg-white dark:bg-black transition-colors duration-75 ease-in-out">
+        <LocaleProvider locale={locale}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            {/* <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              ...existing code...
-            </header> */}
-            {children}
+            <DirectionProvider dir={dir}>
+              <Toaster />
+              <SessionProvider>{children}</SessionProvider>
+            </DirectionProvider>
           </ThemeProvider>
-        </NextIntlClientProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

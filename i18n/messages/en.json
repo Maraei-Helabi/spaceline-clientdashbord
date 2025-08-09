@@ -1,7 +1,8 @@
 {
-    "HomePage": {
+  "HomePage": {
     "title": "Hello world!",
-    "about": "Go to the about page"
+    "about": "Go to the about page",
+    "toggle_theme": "Toggle theme"
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -9,11 +10,14 @@
     "usage": "Usage",
     "device": "Device",
     "billing": "Billing",
+    "profile": "Profile",
     "support": "Support"
   },
   "dashboard": {
     "welcome": "Welcome {name}",
-    "activeSubscriptions": "Active Subscription",
+    "starlinkSubscriptionCount": "{count} Starlink Subscription",
+    "activeSubscription": "Active Subscription",
+    "activeSubscriptions": "Active Subscriptions",
     "connectedDevices": "Connected Device",
     "totalUsage": "Total Usage",
     "monthlyBill": "Total Monthly Bill",
@@ -35,7 +39,20 @@
     "addNew": "Add New",
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "submit": "Submit",
+    "login": "Login",
+    "logout": "Logout",
+    "edit": "Edit",
+    "changePassword": "Change Password",
+    "starlink_portal": "Starlink Portal",
+    "error_500_title": "We couldn’t load all data",
+    "error_404_title": "Page Not Found",
+    "error_404_description": "Sorry, the page you are looking for does not exist. It might have been moved or deleted.",
+    "error_500_description": "We couldn’t transfer all data due to a technical issue. Please try again later or reach out to our support team if the issue persists.",
+    "success": "Success",
+    "phone_number": "Phone Number",
+    "enter_phone_number": "Enter your phone number",
+    "otp_code": "OTP Code"
   },
   "alerts": {
     "subscriptionAlert": "Subscription Alert",
@@ -47,5 +64,9 @@
     "toggleTheme": "Toggle Theme",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode"
+  },
+  "validation": {
+    "phone_number_at_least": "Phone number must be at least {count} numbers",
+    "required": "required"
   }
 }
