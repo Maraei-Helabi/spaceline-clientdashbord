@@ -1,4 +1,25 @@
 {
+  "allStatus": {
+    "active": "نشط",
+    "suspended": "معلق",
+    "expired": "منتهي",
+    "pending": "قيد المراجعة",
+    "connected": "متصل",
+    "disconnected": "غير متصل",
+    "unknown": "غير معروف",
+    "restarting": "إعادة تشغيل"
+  },
+  "subscriptionPage": {
+    "filterTitle": "البحث والتصفية",
+    "searchPlaceholder": "البحث برقم الاشتراك او اسم الباقة...",
+    "bundleName": "اسم الباقة",
+    "diveceSerialId": "رقم سلسلة الجهاز",
+    "dataUsage": "استهلاك البيانات",
+    "deviceStatus": "حالة الجهاز",
+    "renewalDate": "تاريخ التجديد",
+    "monthlyAmount": "القيمة الشهرية",
+    "currency": "ريال"
+  },
   "HomePage": {
     "title": "مرحبا",
     "about": "Go to the about page",
@@ -22,17 +43,6 @@
     "totalUsage": "إجمالي الاستهلاك",
     "monthlyBill": "إجمالي الفاتورة الشهرية",
     "currency": "ريال"
-  },
-  "subscriptionStatus": {
-    "active": "نشط",
-    "suspended": "معلق",
-    "expired": "منتهي",
-    "pending": "قيد المراجعة"
-  },
-  "deviceStatus": {
-    "connected": "متصل",
-    "disconnected": "غير متصل",
-    "restarting": "إعادة تشغيل"
   },
   "common": {
     "viewAll": "عرض الكل",

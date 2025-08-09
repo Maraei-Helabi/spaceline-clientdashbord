@@ -1,4 +1,26 @@
 {
+    "allStatus": {
+    "active": "Active",
+    "suspended": "Suspended",
+    "expired": "Expired",
+    "pending": "Pending",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "unknown": "Unknown",
+    "restarting": "Restarting"
+  },
+  "subscriptionPage": {
+    "filterTitle": "Filter and Search",
+    "searchPlaceholder": "Search by subscription number or package name...",
+    "bundleName": "Bundle Name",
+    "diveceSerialId": "Device Serial ID",
+    "dataUsage": "Data Usage",
+    "deviceStatus": "Device Status",
+    "renewalDate": "Renewal Date",
+    "monthlyAmount": "Monthly Amount",
+    "currency": "YER"
+  },
+
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page",
@@ -22,12 +44,6 @@
     "totalUsage": "Total Usage",
     "monthlyBill": "Total Monthly Bill",
     "currency": "YER"
-  },
-  "subscriptionStatus": {
-    "active": "Active",
-    "suspended": "Suspended",
-    "expired": "Expired",
-    "pending": "Pending"
   },
   "deviceStatus": {
     "connected": "Connected",
