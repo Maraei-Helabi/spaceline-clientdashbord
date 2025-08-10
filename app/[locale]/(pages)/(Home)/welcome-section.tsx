@@ -1,17 +1,28 @@
+"use client";
+import { useCustomersGet } from "@/orval/customers/customers";
 import { Wifi } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
-export const WelcomeSection = async () => {
-  const t = await getTranslations("dashboard");
+export const WelcomeSection = () => {
+  const t = useTranslations("dashboard");
+  const session = useSession();
+
+  const { data: customerData } = useCustomersGet(
+    Number(session.data?.user.CustomerId),
+    {
+      query: {
+        enabled: !!session.data?.user.CustomerId,
+      },
+    }
+  );
 
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h1 className="text-2xl font-bold">
-          {t("welcome", { name: "Saeed" })}
-        </h1>
+        <h1 className="text-2xl font-bold">{t("welcome", { name: customerData?.firstName ?? '' })}</h1>
         <p className="text-muted-foreground">
-          {t("starlinkSubscriptionCount", { count: 3 })}
+          {t("starlinkSubscriptionCount", { count: customerData?.totalSubscriptions ?? 0 })}
         </p>
       </div>
 

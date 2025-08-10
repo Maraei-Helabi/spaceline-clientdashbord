@@ -14,7 +14,10 @@ import toast from "react-hot-toast";
 const queryCache = new QueryCache({
   onError: (error) => {
     if (error instanceof AxiosError) {
-      toast.error(error.response?.data.error);
+      const message =
+        error.response?.data?.messages.join(", ") || "An error occurred";
+      toast.error(message);
+
       if (error.response?.status === 401)
         signOut({ redirect: true, callbackUrl: "/login" });
     }
@@ -24,7 +27,9 @@ const queryCache = new QueryCache({
 const mutationCache = new MutationCache({
   onError: (error) => {
     if (error instanceof AxiosError) {
-      toast.error(error.response?.data.error);
+      const message =
+        error.response?.data?.messages.join(", ") || "An error occurred";
+      toast.error(message);
       if (error.response?.status === 401)
         signOut({ redirect: true, callbackUrl: "/login" });
     }
@@ -37,7 +42,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      staleTime: 360000, // ? 5 mins
+      staleTime: 0,
       retry: (count, error) => {
         if (
           (error instanceof AxiosError && error.response?.status === 401) ||
