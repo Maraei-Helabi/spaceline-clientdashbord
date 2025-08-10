@@ -4,7 +4,7 @@ import qs from 'qs';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-const api = axios.create({
+const http = axios.create({
   baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const api = axios.create({
   },
 });
 
-api.interceptors.request.use(async (request) => {
+http.interceptors.request.use(async (request) => {
   let locale: string = 'ar';
 
   if (typeof window !== 'undefined') {
@@ -36,4 +36,4 @@ api.interceptors.request.use(async (request) => {
   return request;
 });
 
-export { api };
+export { http };
