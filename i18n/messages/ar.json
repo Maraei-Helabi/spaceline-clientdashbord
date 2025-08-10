@@ -7,7 +7,9 @@
     "connected": "متصل",
     "disconnected": "غير متصل",
     "unknown": "غير معروف",
-    "restarting": "إعادة تشغيل"
+    "restarting": "إعادة تشغيل",
+    "paid": "مدفوعة",
+    "overdue": "متأخرة"
   },
   "subscriptionPage": {
     "filterTitle": "البحث والتصفية",
@@ -18,7 +20,31 @@
     "deviceStatus": "حالة الجهاز",
     "renewalDate": "تاريخ التجديد",
     "monthlyAmount": "القيمة الشهرية",
-    "currency": "ريال"
+    "currency": "ريال",
+    "details": "التفاصيل",
+    "devices": "الاجهزه",
+    "kitName": "اسم الكت",
+    "serialNumber": "الرقم التسلسلي",
+    "softwareVersion": "إصدار البرنامج",
+    "starLinkRunTime": "مدة تشغيل ستارلينك",
+    "lastUpdated": "آخر تحديث",
+    "hardwareVersion": "إصدار العتاد",
+    "clients": "عدد العملاء",
+    "routerRunTime": "مدة تشغيل الراوتر",
+    "runTime": "مدة الاتصال",
+    "dataUsed": "البيانات المستخدمة",
+    "rouerConectedToStarlink": "متصل بستارلينك"
+  },
+  "billingPage": {
+    "billing": "الفواتير",
+    "payments": "المدفوعات",
+    "accountBalance": "رصيد الحساب",
+    "currentBalance": "الرصيد الحالي",
+    "monthlyPlan": "الخطة الشهرية",
+    "nextPaymentDate": "تاريخ الدفع القادم",
+    "addFunds": "إضافة رصيد",
+    "recentInvoices": "الفواتير الأخيرة",
+    "recentPayments": "المدفوعات الأخيرة"
   },
   "HomePage": {
     "title": "مرحبا",
