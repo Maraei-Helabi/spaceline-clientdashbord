@@ -1,5 +1,5 @@
 {
-    "allStatus": {
+  "allStatus": {
     "active": "Active",
     "suspended": "Suspended",
     "expired": "Expired",
@@ -7,7 +7,9 @@
     "connected": "Connected",
     "disconnected": "Disconnected",
     "unknown": "Unknown",
-    "restarting": "Restarting"
+    "restarting": "Restarting",
+    "paid": "Paid",
+    "overdue": "Overdue"
   },
   "subscriptionPage": {
     "filterTitle": "Filter and Search",
@@ -18,9 +20,32 @@
     "deviceStatus": "Device Status",
     "renewalDate": "Renewal Date",
     "monthlyAmount": "Monthly Amount",
-    "currency": "YER"
+    "currency": "YER",
+    "details": "Details",
+    "devices": "Devices",
+    "kitName": "Kit Name",
+    "serialNumber": "Serial Number",
+    "softwareVersion": "Software Version",
+    "starLinkRunTime": "Starlink Run Time",
+    "lastUpdated": "Last Updated",
+    "hardwareVersion": "Hardware Version",
+    "clients": "Clients",
+    "routerRunTime": "Router Run Time",
+    "runTime": "Connection Time",
+    "dataUsed": "Data Used",
+    "rouerConectedToStarlink": "Connected to Starlink"
   },
-
+  "billingPage": {
+    "billing": "Billing",
+    "payments": "Payments",
+    "accountBalance": "Account Balance",
+    "currentBalance": "Current Balance",
+    "monthlyPlan": "Monthly Plan",
+    "nextPaymentDate": "Next Payment Date",
+    "addFunds": "Add Funds",
+    "recentInvoices": "Recent Invoices",
+    "recentPayments": "Recent Payments"
+  },
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page",

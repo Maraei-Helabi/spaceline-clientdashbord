@@ -14,7 +14,7 @@ export default async function RootLayout({
   return (
     <div className="min-h-screen">
       <AppHeader />
-      <main className="bg-brand-secondary-400 container mx-auto mb-16 px-2">
+      <main className="bg-brand-secondary-400 container mx-auto mb-16 px-2 py-4">
         {children}
       </main>
       <PagesNavigation />
