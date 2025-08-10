@@ -9,9 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { localizedFormat } from "@/lib/date-fns";
 import { cn } from "@/lib/utils";
 import { fileInput } from "@/lib/zod.schema";
+import { CustomerDto } from "@/orval/model";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod/mini";
 
@@ -46,14 +46,13 @@ const schema = z.object({
 
 type PersonalSchemaT = z.infer<typeof schema>;
 
-const isEditing = false 
+const isEditing = false;
 
-export const PersonalProfile = () => {
+export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
   const t = useTranslations("profile");
   const tCommon = useTranslations("common");
   const tValidation = useTranslations("validation");
-
-  const [user, setUser] = useState<Partial<PersonalSchemaT>>({});
+  const locale = useLocale();
 
   // const [isEditing, setIsEditing] = useState(false);
 
@@ -61,7 +60,7 @@ export const PersonalProfile = () => {
     register,
     control,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors, isValid, isDirty },
   } = useForm<PersonalSchemaT>({
     resolver: zodResolver(schema),
@@ -70,67 +69,74 @@ export const PersonalProfile = () => {
   });
 
   const onSubmit = (values: PersonalSchemaT) => {
-    setUser(values);
+    console.log(values)
     // setIsEditing(false);
   };
 
-  const onEditProfile = () => {
-    reset({ ...user, files: [] });
-    // setIsEditing(true);
-  };
+  // const onEditProfile = () => {
+  //   reset({ ...user, files: [] });
+  //   setIsEditing(true);
+  // };
 
   const handleCancel = () => {
     // Reset to original data
     // setIsEditing(false);
   };
-
+  console.log(customer);
   const personalDetails = [
     {
       label: t("fullName"),
-      value: `${user.first_name ?? ""} ${user.father_name ?? ""} ${
-        user.grand_father_name ?? ""
-      } ${user.last_name ?? ""} ${user.username ?? ""}`.trim(),
+      value: customer.customerFullName,
     },
     {
       label: t("birthDate"),
-      value: !!user.birth_date
-        ? localizedFormat(new Date(user.birth_date), "EEE MMM, yyyy")
+      value: !!customer.birthDay
+        ? localizedFormat(new Date(customer.birthDay), "EEE MMM, yyyy")
         : "",
     },
     {
       label: t("gender"),
-      value: user.gender,
+      value: customer.gender,
     },
     {
       label: t("job"),
-      value: user.job,
+      value: customer.occupation,
     },
     {
       label: t("nationality"),
-      value: user.nationality,
+      value: customer.nationality,
     },
     {
       label: t("idType"),
-      value: user.idType,
+      value:
+        locale === "en"
+          ? customer.nationalityTypeName
+          : customer.nationalityTypeNameAr,
     },
     {
       label: t("idNumber"),
-      value: user.idNumber,
+      value: customer.nationalityId,
     },
     {
       label: t("releaseDate"),
-      value: !!user.release_date
-        ? localizedFormat(new Date(user.release_date), "EEE MMM, yyyy")
+      value: !!customer.nationalIdIssueDate
+        ? localizedFormat(
+            new Date(customer.nationalIdIssueDate),
+            "EEE MMM, yyyy"
+          )
         : "",
     },
     {
       label: t("issuingAuthority"),
-      value: user.issuing_authority,
+      value: customer.issuePlace,
     },
     {
       label: t("endDate"),
-      value: !!user.end_date
-        ? localizedFormat(new Date(user.end_date), "EEE MMM, yyyy")
+      value: !!customer.nationalIdExpiryDate
+        ? localizedFormat(
+            new Date(customer.nationalIdExpiryDate),
+            "EEE MMM, yyyy"
+          )
         : "",
     },
   ];
@@ -138,50 +144,50 @@ export const PersonalProfile = () => {
   const customerSiteInformation = [
     {
       label: t("country"),
-      value: user.country,
+      value: locale === "en" ? customer.countryName : customer.countryNameAr,
     },
     {
       label: t("governorate"),
-      value: user.governorate,
+      value: locale === "en" ? customer.regionName : customer.regionNameAr,
     },
     {
       label: t("city"),
-      value: user.city,
+      value: locale === "en" ? customer.cityName : customer.cityNameAr,
     },
     {
       label: t("neighborhood"),
-      value: user.neighborhood,
+      value: customer.neighborhood,
     },
     {
       label: t("street"),
-      value: user.street,
+      value: customer.street,
     },
     {
       label: t("address"),
-      value: user.address,
+      value: customer.address,
     },
     {
       label: t("prominentLandmark"),
-      value: user.prominent_landmark,
+      value: customer.landMark,
     },
   ];
 
   const contactInformation = [
     {
       label: t("residence"),
-      value: user.residence,
+      value: customer.residency,
     },
     {
       label: t("phone"),
-      value: user.phone,
+      value: customer.telephone,
     },
     {
       label: t("email"),
-      value: user.email,
+      value: customer.email,
     },
     {
       label: t("note"),
-      value: user.note,
+      value: customer.note,
     },
   ];
 
@@ -200,7 +206,7 @@ export const PersonalProfile = () => {
           </>
         ) : (
           <>
-            <Button onClick={onEditProfile}>{t("editProfile")}</Button>
+            {/* <Button onClick={onEditProfile}>{t("editProfile")}</Button> */}
           </>
         )}
       </div>
@@ -648,8 +654,21 @@ export const PersonalProfile = () => {
             />
           ) : (
             <>
-              {!!user.files && user.files?.length > 0 ? (
-                <RenderFiles viewOnly files={user.files} />
+              {!!customer.customerAttachments &&
+              customer.customerAttachments?.length > 0 ? (
+                <RenderFiles
+                  viewOnly
+                  files={[]}
+                  // files={customer.customerAttachments.map((file) => ({
+                  //   file: null,
+                  //   id: String(file.id),
+                  //   name: file.name ?? "",
+                  //   origin_file: null,
+                  //   preview: file.attachment ?? '',
+                  //   size: "",
+                  //   type: "",
+                  // }))}
+                />
               ) : (
                 <p className="text-muted-foreground">
                   {tCommon("no_data_found")}

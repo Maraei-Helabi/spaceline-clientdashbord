@@ -6,6 +6,7 @@ import { setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import { DirectionProvider } from "@/providers/direction-provider";
 import { SessionProvider } from "@/providers/session-provider";
+import { ReactQueryProvider } from "@/providers/react-query-provider";
 
 export default async function LocaleLayout({
   children,
@@ -34,7 +35,9 @@ export default async function LocaleLayout({
           >
             <DirectionProvider dir={dir}>
               <Toaster />
-              <SessionProvider>{children}</SessionProvider>
+              <ReactQueryProvider>
+                <SessionProvider>{children}</SessionProvider>
+              </ReactQueryProvider>
             </DirectionProvider>
           </ThemeProvider>
         </LocaleProvider>

@@ -11,6 +11,7 @@ export const customInstance = <T>(
   const promise = http({
     ...config,
     ...options,
+    responseType: 'json',
     cancelToken: source.token,
   }).then(({ data }) => data) as CancellablePromise<T>;
 

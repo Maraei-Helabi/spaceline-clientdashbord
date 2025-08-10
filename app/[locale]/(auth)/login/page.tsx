@@ -16,6 +16,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { useTransition } from "react";
+import { useTokensRequestOtpForCustomer } from "@/orval/tokens/tokens";
 
 const stepSchema = z.union([z.literal("phone"), z.literal("otp")]);
 
@@ -35,7 +36,7 @@ const schema = z
       });
     }
 
-    if (ctx.value.step === "otp" && ctx.value.otp.length < 6) {
+    if (ctx.value.step === "otp" && ctx.value.otp.length < 4) {
       ctx.issues.push({
         code: "custom",
         message: "validation.required",
@@ -52,6 +53,17 @@ const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryStep = searchParams.get("step");
+  const { mutateAsync, isPending: mutatePending } =
+    useTokensRequestOtpForCustomer({
+      mutation: {
+        onSuccess: (data) => {
+          console.log("OTP request successful:", data);
+        },
+        onError: (error) => {
+          console.error("Error requesting OTP:", error);
+        },
+      }
+    });
 
   const [isPending, startTransition] = useTransition();
 
@@ -66,18 +78,21 @@ const Login = () => {
     resolver: zodResolver(schema),
     mode: "onChange",
     defaultValues: {
-      phone: "",
+      phone: searchParams.get("phone") ?? "",
       otp: "",
       step: stepSchema.safeParse(queryStep).data ?? "phone",
     },
   });
 
   const step = watch("step");
+  const phoneNumber = watch("phone");
 
-  const onSubmit = (data: FormSchema) => {
+  const onSubmit = async (data: FormSchema) => {
     if (data.step === "phone") {
       const params = new URLSearchParams();
+      await mutateAsync({ phoneNumber: data.phone });
       params.set("step", "otp");
+      params.set("phone", data.phone);
       setValue("step", "otp");
       router.replace(`/login?${params.toString()}`);
       return;
@@ -87,6 +102,7 @@ const Login = () => {
       await signIn("credentials", {
         redirect: false,
         otp: data.otp,
+        phone: data.phone,
       });
 
       router.push("/");
@@ -124,13 +140,13 @@ const Login = () => {
                   <InputOTPGroup>
                     <InputOTPSlot index={0} />
                     <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
                   </InputOTPGroup>
                   <InputOTPSeparator />
                   <InputOTPGroup>
+                    <InputOTPSlot index={2} />
                     <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
+                    {/* <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} /> */}
                   </InputOTPGroup>
                 </InputOTP>
               )}
@@ -139,9 +155,26 @@ const Login = () => {
           </div>
         )}
 
-        <Button type="submit" disabled={!isValid || isPending}>
-          {step === "phone" ? t("common.login") : t("common.submit")}
-        </Button>
+        <div className="flex flex-col gap-2">
+          {step === "otp" && (
+            <Button
+              onClick={() => {
+                mutateAsync({ phoneNumber });
+              }}
+              variant="outline"
+              disabled={isPending || mutatePending}
+            >
+              {t("common.reSend")}
+            </Button>
+          )}
+
+          <Button
+            type="submit"
+            disabled={!isValid || isPending || mutatePending}
+          >
+            {step === "phone" ? t("common.login") : t("common.submit")}
+          </Button>
+        </div>
       </form>
     </div>
   );
