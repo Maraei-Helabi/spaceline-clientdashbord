@@ -1,6 +1,7 @@
 {
   "allStatus": {
     "active": "نشط",
+    "inactive": "غير نشط",
     "suspended": "معلق",
     "expired": "منتهي",
     "pending": "قيد المراجعة",
@@ -74,6 +75,8 @@
     "viewAll": "عرض الكل",
     "addNew": "إضافة جديد",
     "reSend": "اعاده ارسال",
+    "male": "ذكر",
+    "female": "أنثى",
     "loading": "جاري التحميل...",
     "error": "خطأ",
     "no_data_found": "لاتوجد بيانات",

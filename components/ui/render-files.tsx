@@ -174,7 +174,6 @@ export const RenderFiles = (props: RenderFilesProps) => {
           <div
             key={`files-${file.id}`}
             className="flex items-center justify-between rounded-lg p-4 shadow-sm border hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => handleFileClick(file)}
           >
             <div className="flex items-center gap-3 flex-1 min-w-0">
               {/* File Icon/Preview */}

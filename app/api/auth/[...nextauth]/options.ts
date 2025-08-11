@@ -1,8 +1,28 @@
-import { tokensLoginWithOtpForCustomer } from "@/orval/tokens/tokens";
+import {
+  tokensLoginWithOtpForCustomer,
+  tokensRefresh,
+} from "@/orval/tokens/tokens";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { jwtDecode } from "jwt-decode";
 import { http } from "@/lib/axios";
+import { JWT } from "next-auth/jwt";
+
+async function refreshAccessToken(token: JWT) {
+  try {
+    const data = await tokensRefresh({
+      refreshToken: token.refreshToken,
+      token: token.token,
+    });
+
+    return {
+      ...token,
+      ...data,
+    };
+  } catch {
+    return token;
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -11,12 +31,20 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.fullName = user.fullName
-        token.refreshToken = user.refreshToken
-        token.CustomerId = user.CustomerId
-        token.token = user.token
+        token.fullName = user.fullName;
+        token.refreshToken = user.refreshToken;
+        token.CustomerId = user.CustomerId;
+        token.token = user.token;
       }
-      return token;
+
+      if (
+        token.refreshTokenExpiryTime &&
+        Date.now() < new Date(token.refreshTokenExpiryTime).getTime()
+      ) {
+        return token;
+      }
+
+      return refreshAccessToken(token);
     },
     async session({ session, token }) {
       if (token) {
@@ -42,7 +70,6 @@ export const authOptions: NextAuthOptions = {
             otp: credentials?.otp || "",
             phoneNumber: credentials?.phone || "",
           });
-
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const user = jwtDecode<any>(data.token ?? "");
 
