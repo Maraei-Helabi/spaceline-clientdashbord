@@ -1,6 +1,7 @@
 {
   "allStatus": {
     "active": "نشط",
+    "inactive": "غير نشط",
     "suspended": "معلق",
     "expired": "منتهي",
     "pending": "قيد المراجعة",

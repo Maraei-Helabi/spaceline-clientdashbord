@@ -101,7 +101,10 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
     },
     {
       label: t("gender"),
-      value: typeof customer.gender === 'number' ? tCommon(genders[customer.gender]) : "",
+      value:
+        typeof customer.gender === "number"
+          ? tCommon(genders[customer.gender])
+          : "",
     },
     {
       label: t("job"),
@@ -663,16 +666,15 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
               customer.customerAttachments?.length > 0 ? (
                 <RenderFiles
                   viewOnly
-                  files={[]}
-                  // files={customer.customerAttachments.map((file) => ({
-                  //   file: null,
-                  //   id: String(file.id),
-                  //   name: file.name ?? "",
-                  //   origin_file: null,
-                  //   preview: file.attachment ?? '',
-                  //   size: "",
-                  //   type: "",
-                  // }))}
+                  files={customer.customerAttachments.map((file) => ({
+                    file: null,
+                    id: String(file.id),
+                    name: file.name ?? "",
+                    origin_file: null,
+                    preview: `${process.env.NEXT_PUBLIC_BASE_URL}/${file.attachment}`,
+                    size: "",
+                    type: "",
+                  }))}
                 />
               ) : (
                 <p className="text-muted-foreground">

@@ -727,7 +727,18 @@ export const CompanyProfile = ({ customer }: { customer: CustomerDto }) => {
             <>
               {!!customer.customerAttachments &&
               customer.customerAttachments.length > 0 ? (
-                <RenderFiles viewOnly files={[]} />
+                <RenderFiles
+                  viewOnly
+                  files={customer.customerAttachments.map((file) => ({
+                    file: null,
+                    id: String(file.id),
+                    name: file.name ?? "",
+                    origin_file: null,
+                    preview: `${process.env.NEXT_PUBLIC_BASE_URL}/${file.attachment}`,
+                    size: "",
+                    type: "",
+                  }))}
+                />
               ) : (
                 <p className="text-muted-foreground">
                   {tCommon("no_data_found")}

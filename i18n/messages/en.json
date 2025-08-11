@@ -1,6 +1,7 @@
 {
   "allStatus": {
     "active": "Active",
+    "inactive": "Inactive",
     "suspended": "Suspended",
     "expired": "Expired",
     "pending": "Pending",
