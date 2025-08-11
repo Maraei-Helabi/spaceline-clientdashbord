@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Select } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { RenderFiles } from "@/components/ui/render-files";
@@ -14,6 +13,7 @@ import { z } from "zod/mini";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fileInput } from "@/lib/zod.schema";
 import { localizedFormat } from "@/lib/date-fns";
+import { CustomerDto } from "@/orval/model";
 
 const schema = z.object({
   companyName: z.string().check(z.minLength(1, "required")),
@@ -51,20 +51,19 @@ type CompanySchemaT = z.infer<typeof schema>;
 
 const isEditing = false;
 
-export const CompanyProfile = () => {
+export const CompanyProfile = ({ customer }: { customer: CustomerDto }) => {
   const t = useTranslations("company");
   const tProfile = useTranslations("profile");
   const tCommon = useTranslations("common");
   const tValidation = useTranslations("validation");
-
+  const locale = useLocale();
   // const [isEditing, setIsEditing] = useState(false);
-  const [company, setCompany] = useState<Partial<CompanySchemaT>>({});
 
   const {
     register,
     control,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors, isValid, isDirty },
   } = useForm<CompanySchemaT>({
     resolver: zodResolver(schema),
@@ -73,14 +72,15 @@ export const CompanyProfile = () => {
   });
 
   const onSubmit = (values: CompanySchemaT) => {
-    setCompany(values);
+    console.log(values);
+    // setCompany(values);
     // setIsEditing(false);
   };
 
-  const onEditProfile = () => {
-    reset({ ...company, files: [] });
-    // setIsEditing(true);
-  };
+  // const onEditProfile = () => {
+  // reset({ ...company, files: [] });
+  // setIsEditing(true);
+  // };
 
   const handleCancel = () => {
     // setIsEditing(false);
@@ -89,57 +89,63 @@ export const CompanyProfile = () => {
   const customerInformation = [
     {
       label: t("companyName"),
-      value: company.companyName,
+      value: customer.companyName,
     },
     {
       label: t("activity"),
-      value: company.activity,
+      value: customer.filed,
     },
     {
       label: t("customerType"),
-      value: company.customerType,
+      value:
+        locale === "en"
+          ? customer.customerTypeName
+          : customer.customerTypeNameAr,
     },
     {
       label: t("ownerName"),
-      value: company.ownerName,
+      value: customer.ownerName,
     },
     {
       label: t("nationalityTypeOfOwner"),
-      value: company.nationalityTypeOfOwner,
+      value:
+        locale === "en"
+          ? customer.nationalityTypeName
+          : customer.nationalityTypeNameAr,
     },
     {
       label: t("nationalityTypeNumberOfOwner"),
-      value: company.nationalityTypeNumberOfOwner,
+      value: customer.nationalityId,
     },
     {
       label: t("mobile"),
-      value: company.mobile,
+      value: customer.mobile,
     },
   ];
 
   const requiredDocuments = [
     {
       label: t("activityDocumentType"),
-      value: company.activityDocumentType,
+      value: customer.licesnseType,
     },
     {
       label: t("activityDocumentNumber"),
-      value: company.activityDocumentNumber,
+      value: customer.licesnseNo,
     },
     {
       label: t("releaseDate"),
-      value: !!company.releaseDate
-        ? localizedFormat(new Date(company.releaseDate), "EEE MMM, yyyy")
+      value: !!customer.licenseIssueDate
+        ? localizedFormat(new Date(customer.licenseIssueDate), "EEE MMM, yyyy")
         : "",
     },
     {
       label: t("issuingAuthority"),
-      value: company.issuingAuthority,
+      value: customer.licenseIssuePlace,
     },
     {
       label: t("endDate"),
-      value: !!company.endDate
-        ? localizedFormat(new Date(company.endDate), "EEE MMM, yyyy")
+      value: !!customer.licenseExpiryDate
+        ? localizedFormat(new Date(customer.licenseExpiryDate), "EEE MMM, yyyy")
         : "",
     },
   ];
@@ -147,70 +153,73 @@ export const CompanyProfile = () => {
   const locationInformation = [
     {
       label: t("country"),
-      value: company.country,
+      value: locale === "en" ? customer.countryName : customer.countryNameAr,
     },
     {
       label: tProfile("governorate"),
-      value: company.governorate,
+      value: locale === "en" ? customer.regionName : customer.regionNameAr,
     },
     {
       label: t("city"),
-      value: company.city,
+      value: locale === "en" ? customer.cityName : customer.cityNameAr,
     },
     {
       label: t("neighborhood"),
-      value: company.neighborhood,
+      value: customer.neighborhood,
     },
     {
       label: t("street"),
-      value: company.street,
+      value: customer.street,
     },
     {
       label: t("address"),
-      value: company.address,
+      value: customer.address,
     },
     {
       label: t("prominent"),
-      value: company.prominent,
+      value: customer.landMark,
     },
   ];
 
   const contactInformation = [
     {
       label: t("activityAddress"),
-      value: company.activityAddress,
+      value: customer.address,
     },
     {
       label: t("email"),
-      value: company.email,
+      value: customer.email,
     },
     {
       label: t("delegateName"),
-      value: company.delegateName,
+      value: customer.nameOfAuthorizedPerson,
     },
     {
       label: t("activityType"),
-      value: company.activityType,
+      value: customer.titleofAuthorizedPerson,
     },
     {
       label: tProfile("idType"),
-      value: company.idType,
+      value:
+        locale === "en"
+          ? customer.nationalityTypeName
+          : customer.nationalityTypeNameAr,
     },
     {
       label: tProfile("idNumber"),
-      value: company.idNumber,
+      value: customer.naionalIdofAuthorizedPerson,
     },
     {
       label: t("telephone"),
-      value: company.telephone,
+      value: customer.telephone,
     },
     {
       label: t("mobileDelegate"),
-      value: company.mobileDelegate,
+      value: customer.mobileOfAuthorizedPerson,
     },
     {
       label: t("note"),
-      value: company.note,
+      value: customer.note,
     },
   ];
 
@@ -229,7 +238,7 @@ export const CompanyProfile = () => {
           </>
         ) : (
           <>
-            <Button onClick={onEditProfile}>{t("editProfile")}</Button>
+            {/* <Button onClick={onEditProfile}>{t("editProfile")}</Button> */}
           </>
         )}
       </div>
@@ -716,8 +725,9 @@ export const CompanyProfile = () => {
             />
           ) : (
             <>
-              {!!company.files && company.files.length > 0 ? (
-                <RenderFiles viewOnly files={company.files} />
+              {!!customer.customerAttachments &&
+              customer.customerAttachments.length > 0 ? (
+                <RenderFiles viewOnly files={[]} />
               ) : (
                 <p className="text-muted-foreground">
                   {tCommon("no_data_found")}

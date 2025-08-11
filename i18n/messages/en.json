@@ -79,6 +79,8 @@
     "viewAll": "View All",
     "addNew": "Add New",
     "pick_a_date": "Pick a date",
+    "male": "Male",
+    "female": "Female",
     "loading": "Loading...",
     "error": "Error",
     "reSend": "Re-send",

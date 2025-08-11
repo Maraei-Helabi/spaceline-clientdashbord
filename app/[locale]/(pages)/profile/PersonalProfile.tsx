@@ -48,6 +48,11 @@ type PersonalSchemaT = z.infer<typeof schema>;
 
 const isEditing = false;
 
+const genders = {
+  0: "male",
+  1: "female",
+};
+
 export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
   const t = useTranslations("profile");
   const tCommon = useTranslations("common");
@@ -69,7 +74,7 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
   });
 
   const onSubmit = (values: PersonalSchemaT) => {
-    console.log(values)
+    console.log(values);
     // setIsEditing(false);
   };
 
@@ -82,7 +87,7 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
     // Reset to original data
     // setIsEditing(false);
   };
-  console.log(customer);
+
   const personalDetails = [
     {
       label: t("fullName"),
@@ -91,12 +96,12 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
     {
       label: t("birthDate"),
       value: !!customer.birthDay
-        ? localizedFormat(new Date(customer.birthDay), "EEE MMM, yyyy")
+        ? localizedFormat(new Date(customer.birthDay), "EEEE MMMM, yyyy")
         : "",
     },
     {
       label: t("gender"),
-      value: customer.gender,
+      value: typeof customer.gender === 'number' ? tCommon(genders[customer.gender]) : "",
     },
     {
       label: t("job"),
@@ -122,7 +127,7 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
       value: !!customer.nationalIdIssueDate
         ? localizedFormat(
             new Date(customer.nationalIdIssueDate),
-            "EEE MMM, yyyy"
+            "EEEE MMMM, yyyy"
           )
         : "",
     },
@@ -135,7 +140,7 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
       value: !!customer.nationalIdExpiryDate
         ? localizedFormat(
             new Date(customer.nationalIdExpiryDate),
-            "EEE MMM, yyyy"
+            "EEEE MMMM, yyyy"
           )
         : "",
     },
@@ -179,7 +184,7 @@ export const PersonalProfile = ({ customer }: { customer: CustomerDto }) => {
     },
     {
       label: t("phone"),
-      value: customer.telephone,
+      value: customer.mobile,
     },
     {
       label: t("email"),
