@@ -163,6 +163,7 @@ const Login = () => {
               }}
               variant="outline"
               disabled={isPending || mutatePending}
+              loading={isPending || mutatePending}
             >
               {t("common.reSend")}
             </Button>
@@ -171,6 +172,7 @@ const Login = () => {
           <Button
             type="submit"
             disabled={!isValid || isPending || mutatePending}
+            loading={isPending || mutatePending}
           >
             {step === "phone" ? t("common.login") : t("common.submit")}
           </Button>
