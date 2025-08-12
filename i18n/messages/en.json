@@ -1,5 +1,6 @@
 {
   "allStatus": {
+    "all": "All",
     "active": "Active",
     "inactive": "Inactive",
     "suspended": "Suspended",
@@ -19,7 +20,9 @@
     "diveceSerialId": "Device Serial ID",
     "dataUsage": "Data Usage",
     "deviceStatus": "Device Status",
+    "bundleStatus": "Bundle Status",
     "renewalDate": "Renewal Date",
+    "startDate": "Start Bundle Date",
     "monthlyAmount": "Monthly Amount",
     "currency": "YER",
     "details": "Details",
@@ -34,7 +37,8 @@
     "routerRunTime": "Router Run Time",
     "runTime": "Connection Time",
     "dataUsed": "Data Used",
-    "rouerConectedToStarlink": "Connected to Starlink"
+    "rouerConectedToStarlink": "Connected to Starlink",
+    "renewalType": "Renewal Type"
   },
   "billingPage": {
     "billing": "Billing",
