@@ -60,8 +60,10 @@ export interface PaymentTransactionDto {
   amount?: number;
   paymentDate?: string;
   paymentMethodId?: PaymentMethodStatus;
+  paymentMethodName?: string;
   paymentCode?: number;
   status?: PaymentTransactionStatus;
+  statusName?: string;
   /** @nullable */
   createdBy?: string | null;
   kitInfoExportString?: string;

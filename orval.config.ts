@@ -1,6 +1,6 @@
 import { defineConfig } from "orval";
 
-const baseURL = '';
+const baseURL = 'https://testapi.spacelinenet.com';
 
 const sharedConfig = {
   output: {
