@@ -131,8 +131,9 @@ const Login = () => {
         )}
 
         {step === "otp" && (
-          <div dir="ltr" className="flex flex-col rtl:items-end">
+          <div dir="ltr" className="flex flex-col items-center">
             <Label className="mb-2">{t("common.otp_code")}</Label>
+            <span className="text-xs mb-4 text-stone-400">{t("common.otp_subTitle")}</span>
             <Controller
               name="otp"
               render={({ field }) => (
