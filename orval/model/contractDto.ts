@@ -56,6 +56,8 @@ export interface ContractDto {
   /** @nullable */
   nationalityTypeId?: number | null;
   /** @nullable */
+  nationalityTypeName?: string | null;
+  /** @nullable */
   nationalityTypeNameAr?: string | null;
   /** @nullable */
   nationalityId?: string | null;
@@ -105,6 +107,10 @@ export interface ContractDto {
   titleofAuthorizedPerson?: string | null;
   /** @nullable */
   nationalTypeIdofAuthorizedPerson?: number | null;
+  /** @nullable */
+  nationalTypeNameofAuthorizedPerson?: string | null;
+  /** @nullable */
+  nationalTypeNameArofAuthorizedPerson?: string | null;
   /** @nullable */
   naionalIdofAuthorizedPerson?: string | null;
   /** @nullable */

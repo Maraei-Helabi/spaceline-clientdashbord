@@ -26,6 +26,8 @@ import type {
 
 import type {
   ApiResponseOfInteger,
+  ApiResponseOfObject,
+  ApiResponseOfRouterConfigResponseServiceResponse,
   CheckKitStatusDto,
   CheckKitsInStockRequest,
   CheckTerminalDto,
@@ -35,6 +37,7 @@ import type {
   HttpValidationProblemDetails,
   PaginationResponseOfTerminalDto,
   RemoveKitDto,
+  RouterConfigRequest,
   SearchTerminalRequest,
   TerminalDto,
   TerminalKitResult,
@@ -693,6 +696,158 @@ export const useTerminalsExport = <TError = ErrorType<unknown>,
       > => {
 
       const mutationOptions = getTerminalsExportMutationOptions(options);
+
+      return useMutation(mutationOptions , queryClient);
+    }
+    /**
+ * @summary Get the router configuration for a terminal.
+ */
+export const terminalsGetRouterConfig = (
+    configId: string,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<ApiResponseOfObject>(
+      {url: `/api/v1/terminals/get-router-config/${configId}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+export const getTerminalsGetRouterConfigQueryKey = (configId?: string,) => {
+    return [`/api/v1/terminals/get-router-config/${configId}`] as const;
+    }
+
+    
+export const getTerminalsGetRouterConfigQueryOptions = <TData = Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(configId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getTerminalsGetRouterConfigQueryKey(configId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof terminalsGetRouterConfig>>> = ({ signal }) => terminalsGetRouterConfig(configId, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(configId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type TerminalsGetRouterConfigQueryResult = NonNullable<Awaited<ReturnType<typeof terminalsGetRouterConfig>>>
+export type TerminalsGetRouterConfigQueryError = ErrorType<HttpValidationProblemDetails | ErrorResult>
+
+
+export function useTerminalsGetRouterConfig<TData = Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ configId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof terminalsGetRouterConfig>>,
+          TError,
+          Awaited<ReturnType<typeof terminalsGetRouterConfig>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useTerminalsGetRouterConfig<TData = Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ configId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof terminalsGetRouterConfig>>,
+          TError,
+          Awaited<ReturnType<typeof terminalsGetRouterConfig>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useTerminalsGetRouterConfig<TData = Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ configId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get the router configuration for a terminal.
+ */
+
+export function useTerminalsGetRouterConfig<TData = Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ configId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof terminalsGetRouterConfig>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getTerminalsGetRouterConfigQueryOptions(configId,options)
+
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * @summary Update the router configuration for a terminal.
+ */
+export const terminalsUpdateRouterConfig = (
+    configId: string,
+    routerConfigRequest: BodyType<RouterConfigRequest>,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<ApiResponseOfRouterConfigResponseServiceResponse>(
+      {url: `/api/v1/terminals/update-router-config/${configId}`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: routerConfigRequest, signal
+    },
+      options);
+    }
+  
+
+
+export const getTerminalsUpdateRouterConfigMutationOptions = <TError = ErrorType<HttpValidationProblemDetails | ErrorResult>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext> => {
+
+const mutationKey = ['terminalsUpdateRouterConfig'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, {configId: string;data: BodyType<RouterConfigRequest>}> = (props) => {
+          const {configId,data} = props ?? {};
+
+          return  terminalsUpdateRouterConfig(configId,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type TerminalsUpdateRouterConfigMutationResult = NonNullable<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>>
+    export type TerminalsUpdateRouterConfigMutationBody = BodyType<RouterConfigRequest>
+    export type TerminalsUpdateRouterConfigMutationError = ErrorType<HttpValidationProblemDetails | ErrorResult>
+
+    /**
+ * @summary Update the router configuration for a terminal.
+ */
+export const useTerminalsUpdateRouterConfig = <TError = ErrorType<HttpValidationProblemDetails | ErrorResult>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>,
+        TError,
+        {configId: string;data: BodyType<RouterConfigRequest>},
+        TContext
+      > => {
+
+      const mutationOptions = getTerminalsUpdateRouterConfigMutationOptions(options);
 
       return useMutation(mutationOptions , queryClient);
     }

@@ -28,6 +28,8 @@ export interface CustomerDto {
   /** @nullable */
   gender?: CustomerDtoGender;
   /** @nullable */
+  genderName?: string | null;
+  /** @nullable */
   birthDay?: string | null;
   /** @nullable */
   occupation?: string | null;

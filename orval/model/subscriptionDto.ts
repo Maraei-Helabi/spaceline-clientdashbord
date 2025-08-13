@@ -44,7 +44,9 @@ export interface SubscriptionDto {
   renewalDate?: string | null;
   renewalDateId?: number;
   renewalType?: SubscriptionRenewalType;
+  renewalTypeName?: string;
   status?: SubscriptionStatus;
+  statusName?: string;
   /** @nullable */
   serviceLineDetails?: SubscriptionDtoServiceLineDetails;
 }
