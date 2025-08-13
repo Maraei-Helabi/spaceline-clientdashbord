@@ -1,5 +1,6 @@
 {
   "allStatus": {
+    "all": "الكل",
     "active": "نشط",
     "inactive": "غير نشط",
     "suspended": "معلق",
@@ -19,7 +20,9 @@
     "diveceSerialId": "رقم سلسلة الجهاز",
     "dataUsage": "استهلاك البيانات",
     "deviceStatus": "حالة الجهاز",
+    "bundleStatus": "حالة الاشتراك",
     "renewalDate": "تاريخ التجديد",
+    "startDate": "تاريخ بداء الاشتراك",
     "monthlyAmount": "القيمة الشهرية",
     "currency": "ريال",
     "details": "التفاصيل",
@@ -34,7 +37,8 @@
     "routerRunTime": "مدة تشغيل الراوتر",
     "runTime": "مدة الاتصال",
     "dataUsed": "البيانات المستخدمة",
-    "rouerConectedToStarlink": "متصل بستارلينك"
+    "rouerConectedToStarlink": "متصل بستارلينك",
+    "renewalType": "نوع التجديد"
   },
   "billingPage": {
     "billing": "الفواتير",
