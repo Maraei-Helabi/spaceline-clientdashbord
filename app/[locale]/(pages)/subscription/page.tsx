@@ -6,7 +6,7 @@ import { SkeletonSubCard } from "./components/SkeletonSubCard";
 import { SubsecriptionCard } from "./components/SubsecriptionCard";
 
 export default function SubscriptionPage() {
-  
+
   const [filters, setFilters] = useState({
     search: "",
     subscriptionBundleId: "",
@@ -27,7 +27,7 @@ export default function SubscriptionPage() {
       },
     });
   }, [filters]);
- 
+
   return (
     <>
       <SubscriptionsFilters filters={filters} setFilters={setFilters} />
@@ -40,7 +40,7 @@ export default function SubscriptionPage() {
             ))}
           </div>
         ) : (
-          <SubsecriptionCard subscriptions={subscriptionsDate || []}/>
+          <SubsecriptionCard subscriptions={subscriptionsDate || []} />
         )
       }
     </>
