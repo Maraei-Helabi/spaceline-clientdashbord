@@ -18,6 +18,14 @@ export function StatusBadge({ text }: StatusBadgeProps) {
             </Badge>
         );
     }
+    if (normalized === "مدفوع" || normalized === "paid" || normalized === "دمفوعه") {
+        return (
+            <Badge variant="success">
+                <CheckCircle className="w-3 h-3 mr-1" />
+                {tStatus("paid")}
+            </Badge>
+        );
+    }
     if (normalized === "معلق" || normalized === "suspended" || normalized === "1") {
         return (
             <Badge variant="destructive">
