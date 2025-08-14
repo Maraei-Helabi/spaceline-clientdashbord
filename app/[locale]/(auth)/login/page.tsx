@@ -56,13 +56,10 @@ const Login = () => {
   const { mutateAsync, isPending: mutatePending } =
     useTokensRequestOtpForCustomer({
       mutation: {
-        onSuccess: (data) => {
-          console.log("OTP request successful:", data);
+        meta: {
+          preventAuthorizedRedirect: true,
         },
-        onError: (error) => {
-          console.error("Error requesting OTP:", error);
-        },
-      }
+      },
     });
 
   const [isPending, startTransition] = useTransition();

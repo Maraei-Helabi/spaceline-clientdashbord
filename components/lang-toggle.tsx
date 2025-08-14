@@ -2,9 +2,9 @@
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { queryClient } from "@/providers/react-query-provider";
 import { Button } from "./ui/button";
 import {  Languages } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -15,6 +15,7 @@ import {
 export function LangToggle() {
   const router = useRouter();
   const currentPathname = usePathname();
+  const queryClient = useQueryClient();
 
   const locale = useLocale();
   const [isPending, startTransition] = useTransition();
