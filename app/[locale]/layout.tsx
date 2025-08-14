@@ -7,6 +7,38 @@ import "../globals.css";
 import { DirectionProvider } from "@/providers/direction-provider";
 import { SessionProvider } from "@/providers/session-provider";
 import { ReactQueryProvider } from "@/providers/react-query-provider";
+import { Metadata } from "next";
+
+type PageProps = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const title = locale === 'ar' ? 'ادارة اشتراكات ستارلينك' : 'Starlink Subscription Management';
+  
+  const imageUrl =
+    process.env.NEXT_PUBLIC_NEXT_AUTH_URL + `/api/og?title=${title}`;
+
+  return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_NEXT_AUTH_URL ?? ''),
+    title: {
+      default: title,
+      template: `%s | ${title}`,
+    },
+    icons: { icon: '/logo.svg' },
+    openGraph: {
+      type: 'website',
+      title,
+      images: imageUrl,
+    },
+    appleWebApp: { title },
+    twitter: {
+      title,
+      images: imageUrl,
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
