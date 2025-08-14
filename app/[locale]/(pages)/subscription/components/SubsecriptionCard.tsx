@@ -1,17 +1,8 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, AlertCircle, Calendar, MapPin, Settings, RefreshCw, KeyRound, XCircle, Repeat, Copy } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { SubscriptionDto } from "@/orval/model";
 import { StatusBadge } from "@/components/StatusBadge";
 import { NoDataCard } from "@/components/NoDataCard";
@@ -28,31 +19,6 @@ const SubsecriptionCard = ({ subscriptions }: { subscriptions: SubscriptionDto[]
                 <Link href={`/subscription/subscriptionDetails/${subscription.id}`} key={subscription.id}>
                     <Card className="mb-2">
                         <CardHeader className="pb-2">
-                            <div className="flex justify-self-end mb-4">
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="outline" size="sm">
-                                            <Settings className="w-4 h-4" />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent className="w-56" align="start">
-                                        <DropdownMenuGroup>
-                                            <DropdownMenuItem>
-                                                <XCircle className="w-4 h-4 mr-2 text-destructive" />
-                                                إلغاء الاشتراك
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Repeat className="w-4 h-4 mr-2 text-primary" />
-                                                تغيير الباقة
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <KeyRound className="w-4 h-4 mr-2" />
-                                                Public ID
-                                            </DropdownMenuItem>
-                                        </DropdownMenuGroup>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </div>
                             <CardTitle className="flex items-center justify-between">
                                 <div className="flex gap-2 items-center space-x-3 rtl:space-x-reverse">
                                     <span className="text-lg font-bold">{locale === "en" ? subscription.subscriptionBundleBundleName : subscription.subscriptionBundleBundleNameAr}</span>
