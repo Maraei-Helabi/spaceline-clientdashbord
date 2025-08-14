@@ -3,12 +3,12 @@ import { CheckCircle, AlertCircle, Calendar } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface StatusBadgeProps {
-    text: any;
+    text: string | number | undefined;
 }
 
 export function StatusBadge({ text }: StatusBadgeProps) {
     const tStatus = useTranslations("allStatus");
-    let normalized = String(text ?? "").toLowerCase();
+    const normalized = String(text ?? "").toLowerCase();
 
     if (normalized === "نشط" || normalized === "active" || normalized === "0") {
         return (
@@ -43,6 +43,8 @@ export function StatusBadge({ text }: StatusBadgeProps) {
         );
     }
     return (
-        <Badge variant="secondary">غير معروف</Badge>
+        <Badge variant="secondary">
+            {tStatus("unknown")}
+        </Badge>
     );
 }

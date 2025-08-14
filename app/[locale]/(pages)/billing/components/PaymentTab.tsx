@@ -27,10 +27,11 @@ import { useEffect } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
 import SkeletonLoader from "./SkeletonLoader";
 import { useRouter } from "next/navigation";
+import { PaymentTransactionDto } from "@/orval/model";
 export default function PaymentTab() {
 
     const [open, setOpen] = useState(false);
-    const [selectedPayment, setSelectedPayment] = useState<any>(null);
+    const [selectedPayment, setSelectedPayment] = useState<PaymentTransactionDto | null>(null);
 
     const tBilling = useTranslations('billingPage');
 
