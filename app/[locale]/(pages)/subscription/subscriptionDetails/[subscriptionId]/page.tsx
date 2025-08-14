@@ -65,7 +65,7 @@ const subscriptionDetails = async () => {
                     <TabsTrigger value="devices">{tSubsection('devices')}</TabsTrigger>
                 </TabsList>
                 <TabsContent className="w-full" value="details">
-                    <SubsecriptionCard subscriptions={subscriptions} />
+                    {/* <SubsecriptionCard subscriptions={subscriptions} /> */}
                 </TabsContent>
                 <TabsContent className="w-full" value="devices">
                     <DevicesCard Devices={Devices} />

@@ -1,49 +1,31 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { useSubscriptionBundlesSearch } from "@/orval/subscription-bundles/subscription-bundles";
 import { Search, Filter } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
-
-type Filters = {
-  search: string;
-  subscriptionBundleId: string;
-  status: string;
-  // deviceStatus?: string;
-};
+import { useEffect } from "react";
+import { SubscriptionPageFiltersT } from "../page";
+import { SearchBar } from "@/components/ui/search-bar";
 
 type SubscriptionsFiltersProps = {
-  filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: SubscriptionPageFiltersT;
+  handleFilters: (vals: Partial<SubscriptionPageFiltersT>) => void;
 };
 
-const SubscriptionsFilters = ({ filters, setFilters }: SubscriptionsFiltersProps) => {
+const SubscriptionsFilters = (props: SubscriptionsFiltersProps) => {
+  const { filters } = props;
+
+  const locale = useLocale();
   const tStatus = useTranslations("allStatus");
   const tSubsection = useTranslations("subscriptionPage");
-  const locale = useLocale();
-  
-  const SubscriptionBundlesSearch = useSubscriptionBundlesSearch();
+
+  const subscriptionBundlesSearch = useSubscriptionBundlesSearch();
+  const bundlesData = subscriptionBundlesSearch?.data?.data;
+
   useEffect(() => {
-    SubscriptionBundlesSearch.mutate({ data: {} });
+    subscriptionBundlesSearch.mutate({ data: {} });
   }, []);
-
-  const BundlesData = SubscriptionBundlesSearch?.data?.data;
-
-
-  // Local state for search input
-  const [searchValue, setSearchValue] = useState(filters.search);
-  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    if (searchTimeout.current) clearTimeout(searchTimeout.current);
-    searchTimeout.current = setTimeout(() => {
-      setFilters(prev => ({ ...prev, search: value }));
-    }, 1000);
-  };
 
   return (
     <div className="my-4">
@@ -58,11 +40,11 @@ const SubscriptionsFilters = ({ filters, setFilters }: SubscriptionsFiltersProps
           <div className="flex space-x-2 rtl:space-x-reverse">
             <div className="relative flex-1">
               <Search className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
+              <SearchBar
                 placeholder={tSubsection("searchPlaceholder")}
                 className="pl-10 rtl:pl-0 rtl:pr-10"
-                value={searchValue}
-                onChange={handleSearchChange}
+                value={filters.search}
+                onChange={(search) => props.handleFilters({ search })}
               />
             </div>
           </div>
@@ -72,17 +54,24 @@ const SubscriptionsFilters = ({ filters, setFilters }: SubscriptionsFiltersProps
               className="col-span-7 sm:col-span-6"
               placeholder={tSubsection("bundleName")}
               options={[
-                { id: "null", bundleName: tStatus("all"), bundleNameAr: tStatus("all") },
-                ...((BundlesData ?? []).map(Bundle => ({
-                  id: String(Bundle.id),
-                  bundleName: Bundle.bundleName,
-                  bundleNameAr: Bundle.bundleNameAr
-                })))
+                {
+                  id: "all",
+                  name: tStatus("all"),
+                },
+                ...(bundlesData ?? []).map((bundle) => ({
+                  id: String(bundle.id),
+                  name:
+                    locale === "en" ? bundle.bundleName : bundle.bundleNameAr,
+                })),
               ]}
-              value={filters.subscriptionBundleId || "null"}
-              onValueChange={val => setFilters({ ...filters, subscriptionBundleId: val === "null" ? "" : val })}
-              getOptionValue={option => option.id}
-              getOptionLabel={option => (locale === "en" ? option.bundleName : option.bundleNameAr) || ""}
+              value={filters.subscriptionBundleId}
+              onValueChange={(val) =>
+                props.handleFilters({
+                  subscriptionBundleId: val,
+                })
+              }
+              getOptionValue={(option) => option.id}
+              getOptionLabel={(option) => option.name ?? ""}
             />
             <Select
               className="col-span-5 sm:col-span-6"
@@ -105,10 +94,12 @@ const SubscriptionsFilters = ({ filters, setFilters }: SubscriptionsFiltersProps
                   id: "2",
                 },
               ]}
-              value={filters.status === "" ? "all" : filters.status}
-              onValueChange={val => setFilters({ ...filters, status: val === "all" ? "" : val })}
-              getOptionValue={option => option.id}
-              getOptionLabel={option => option.name}
+              value={filters.status}
+              onValueChange={(val) =>
+                props.handleFilters({ status: val })
+              }
+              getOptionValue={(option) => option.id}
+              getOptionLabel={(option) => option.name}
             />
             {/* <Select
               className="col-span-12 sm:col-span-6"
