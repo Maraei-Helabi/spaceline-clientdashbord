@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import { ModeToggle } from "../ModeToggle";
 import { LangToggle } from "../lang-toggle";
 import { AuthLogout } from "./auth-logout";
@@ -7,7 +6,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import Image from "next/image";
 
 const AppHeader = async () => {
-  const t = await getTranslations("common");
   const session = await getServerSession(authOptions);
 
   return (
@@ -15,7 +13,7 @@ const AppHeader = async () => {
       <div className="container flex justify-between items-center p-4">
         {/* <h1 className="text-lg font-semibold">{t("starlink_portal")}</h1> */}
         <Image
-          src={ "/app-logo.png"}
+          src={"/app-logo.png"}
           alt="app-logo"
           width={100}
           height={100}

@@ -1,36 +1,24 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
-    DollarSign,
-    Download,
-    Calendar,
     CreditCard,
-    FileText,
-    CheckCircle,
-    AlertCircle,
-    Clock,
-    Receipt,
-    ArrowBigLeft,
     ChevronLeft
 } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import PaymentInfoCard from "./PaymentInfoCard";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { usePaymentTransactionsSearch } from "@/orval/payment-transactions/payment-transactions";
-import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
 import SkeletonLoader from "./SkeletonLoader";
-import { useRouter } from "next/navigation";
+import { PaymentTransactionDto } from "@/orval/model";
 export default function PaymentTab() {
 
     const [open, setOpen] = useState(false);
-    const [selectedPayment, setSelectedPayment] = useState<any>(null);
+    const [selectedPayment, setSelectedPayment] = useState<PaymentTransactionDto | null>(null);
 
     const tBilling = useTranslations('billingPage');
 

@@ -4,18 +4,15 @@ import { Badge } from "@/components/ui/badge";
 import {
     DollarSign,
     Download,
-    Calendar,
     CreditCard,
     FileText,
     CheckCircle,
     AlertCircle,
     Clock,
-    Receipt
 } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 export default async function BillingTab() {
-    const tStatus = await getTranslations('allStatus');
     const tBilling = await getTranslations('billingPage');
 
     const getStatusBadge = (status: string) => {
