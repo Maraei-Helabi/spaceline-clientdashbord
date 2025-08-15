@@ -16,7 +16,7 @@ const SubsecriptionCard = ({ subscriptions }: { subscriptions: SubscriptionDto[]
             {subscriptions.length <= 0 ? 
             <NoDataCard/>
             : subscriptions.map((subscription) => (
-                <Link href={`/subscription/subscriptionDetails/${subscription.id}`} key={subscription.id}>
+                <Link href={`/subscription/${subscription.id}`} key={subscription.id}>
                     <Card className="mb-2">
                         <CardHeader className="pb-2">
                             <CardTitle className="flex items-center justify-between">
@@ -53,7 +53,7 @@ const SubsecriptionCard = ({ subscriptions }: { subscriptions: SubscriptionDto[]
                                 </div>
                             </div>
 
-                            <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                            <div className="flex items-center gap-2">
                                 <MapPin className="w-4 h-4 text-muted-foreground" />
                                 <span className="text-sm">{subscription.startlinkAddressId}</span>
                             </div>

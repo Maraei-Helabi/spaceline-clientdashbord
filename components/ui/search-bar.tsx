@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { Input } from './input';
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { Input } from "./input";
+import { Search } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type SearchBarProps = {
   value?: string;
@@ -12,8 +14,8 @@ type SearchBarProps = {
 
 const SearchBar = (props: SearchBarProps) => {
   const { value, className, placeholder, disabled } = props;
-  const [inputVal, setInputVal] = useState(value ?? '');
-  const t = useTranslations('common');
+  const [inputVal, setInputVal] = useState(value ?? "");
+  const t = useTranslations("common");
 
   const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputVal(event.target.value);
@@ -28,17 +30,21 @@ const SearchBar = (props: SearchBarProps) => {
   }, [inputVal]);
 
   useEffect(() => {
-    setInputVal(value || '');
+    setInputVal(value || "");
   }, [value]);
 
   return (
-    <Input
-      className={className}
-      placeholder={placeholder ?? `${t('search')}...`}
-      value={inputVal}
-      disabled={disabled}
-      onChange={onSearchChange}
-    />
+    <div className={cn("relative", className)}>
+      <Search className="absolute h-4 w-4 top-[10px] ltr:left-3 rtl:right-3 text-muted-foreground" />
+
+      <Input
+        placeholder={placeholder ?? `${t("search")}...`}
+        value={inputVal}
+        disabled={disabled}
+        onChange={onSearchChange}
+        inputClassName="px-8"
+      />
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select } from "@/components/ui/select";
 import { useSubscriptionBundlesSearch } from "@/orval/subscription-bundles/subscription-bundles";
-import { Search, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { SubscriptionPageFiltersT } from "../page";
@@ -37,17 +37,11 @@ const SubscriptionsFilters = (props: SubscriptionsFiltersProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex space-x-2 rtl:space-x-reverse">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 rtl:left-auto rtl:right-3 top-3 h-4 w-4 text-muted-foreground" />
-              <SearchBar
-                placeholder={tSubsection("searchPlaceholder")}
-                className="pl-10 rtl:pl-0 rtl:pr-10"
-                value={filters.search}
-                onChange={(search) => props.handleFilters({ search })}
-              />
-            </div>
-          </div>
+          <SearchBar
+            placeholder={tSubsection("searchPlaceholder")}
+            value={filters.search}
+            onChange={(search) => props.handleFilters({ search })}
+          />
 
           <div className="grid grid-cols-12 gap-4">
             <Select
@@ -95,9 +89,7 @@ const SubscriptionsFilters = (props: SubscriptionsFiltersProps) => {
                 },
               ]}
               value={filters.status}
-              onValueChange={(val) =>
-                props.handleFilters({ status: val })
-              }
+              onValueChange={(val) => props.handleFilters({ status: val })}
               getOptionValue={(option) => option.id}
               getOptionLabel={(option) => option.name}
             />

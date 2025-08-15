@@ -50,6 +50,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const dir = locale === "ar" ? "rtl" : "ltr";
   setRequestLocale(locale);
+
   return (
     <html
       lang={locale}
