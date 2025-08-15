@@ -20,9 +20,13 @@ export const WelcomeSection = () => {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h1 className="text-2xl font-bold">{t("welcome", { name: customerData?.firstName ?? '' })}</h1>
+        <h1 className="text-2xl font-bold">
+          {t("welcome", { name: customerData?.firstName ?? "" })}
+        </h1>
         <p className="text-muted-foreground">
-          {t("starlinkSubscriptionCount", { count: customerData?.totalSubscriptions ?? 0 })}
+          {t("starlinkSubscriptionCount", {
+            count: String(customerData?.totalSubscriptions ?? 0),
+          })}
         </p>
       </div>
 

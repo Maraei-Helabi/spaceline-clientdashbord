@@ -1,7 +1,6 @@
 // يمكنك وضع هذا الكود في ملف جديد مثلاً: PaymentCard.tsx
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CheckCircle, CreditCard, Calendar, Package, FileText } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Calendar, Package, FileText } from "lucide-react";
 import { PaymentTransactionDto } from "@/orval/model";
 import { useLocale, useTranslations } from "next-intl";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -45,7 +44,7 @@ export default function PaymentInfoCard({ payment }: { payment: PaymentTransacti
                     <span className="font-semibold">{tBilling('productsDetails')}</span>
                 </div>
                 <div className="space-y-2">
-                    {payment.orderOrderItems?.map((item, idx) => (
+                    {payment.orderOrderItems?.map((item) => (
                         <Card key={item.id} className="border rounded-lg p-2 bg-muted/40 gap-0">
                             <div className="flex items-center gap-2 mb-2">
                                 <FileText size={18} />
