@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, AlertCircle, Calendar, MapPin, Settings, Router, RefreshCw, KeyRound } from "lucide-react";
+import { CheckCircle, AlertCircle, Settings, Router, RefreshCw, KeyRound } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -49,18 +49,18 @@ const DevicesCard = async ({ Devices }: DevicesCardProps) => {
     const tSubsection = await getTranslations('subscriptionPage');
 
 
-    const getStatusBadge = (status: string) => {
-        switch (status) {
-            case "Active":
-                return <Badge variant="success"><CheckCircle className="w-3 h-3 mr-1" />{tStatus('active')}</Badge>;
-            case "Suspended":
-                return <Badge variant="destructive"><AlertCircle className="w-3 h-3 mr-1" />{tStatus('suspended')}</Badge>;
-            case "Expired":
-                return <Badge variant="secondary"><Calendar className="w-3 h-3 mr-1" />{tStatus('expired')}</Badge>;
-            default:
-                return <Badge variant="secondary">غير معروف</Badge>;
-        }
-    };
+    // const getStatusBadge = (status: string) => {
+    //     switch (status) {
+    //         case "Active":
+    //             return <Badge variant="success"><CheckCircle className="w-3 h-3 mr-1" />{tStatus('active')}</Badge>;
+    //         case "Suspended":
+    //             return <Badge variant="destructive"><AlertCircle className="w-3 h-3 mr-1" />{tStatus('suspended')}</Badge>;
+    //         case "Expired":
+    //             return <Badge variant="secondary"><Calendar className="w-3 h-3 mr-1" />{tStatus('expired')}</Badge>;
+    //         default:
+    //             return <Badge variant="secondary">غير معروف</Badge>;
+    //     }
+    // };
 
     const getDeviceStatusBadge = (status: string) => {
         switch (status) {

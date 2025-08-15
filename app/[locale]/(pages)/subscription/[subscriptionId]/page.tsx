@@ -1,9 +1,13 @@
 "use client";
 import { use } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import { DevicesCard } from "./components/DevicesCard";
 import { useSubscriptionsGetStarlinkSubscriptionDetails } from "@/orval/subscriptions/subscriptions";
 import { useTranslations } from "next-intl";
+import { SubscriptionInformation } from "./components/subscription-information";
+import { Link } from "@/i18n/navigation";
 
 const SubscriptionDetails = ({
   params,
@@ -11,7 +15,6 @@ const SubscriptionDetails = ({
   params: Promise<{ subscriptionId: string }>;
 }) => {
   const { subscriptionId } = use(params);
-
   const tCommon = useTranslations("common");
   const tSubsection = useTranslations("subscriptionPage");
 
@@ -56,6 +59,16 @@ const SubscriptionDetails = ({
   ];
   return (
     <div className="flex w-full items-center flex-col gap-6">
+      {/* Back Button */}
+      <div className="w-full flex justify-start">
+        <Link href="/subscription">
+          <Button variant="ghost" className="flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+            {tSubsection("backToSubscriptions")}
+          </Button>
+        </Link>
+      </div>
+
       <Tabs className="w-full items-center" defaultValue="details">
         <TabsList>
           <TabsTrigger value="details">{tSubsection("details")} </TabsTrigger>
@@ -71,7 +84,7 @@ const SubscriptionDetails = ({
         {!isFetching && (
           <>
             <TabsContent className="w-full" value="details">
-              {/* <SubsecriptionCard subscriptions={subscriptions} /> */}
+              <SubscriptionInformation subscriptionId={+subscriptionId} subscription={data} />
             </TabsContent>
 
             <TabsContent className="w-full" value="devices">

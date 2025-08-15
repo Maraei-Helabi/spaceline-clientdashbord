@@ -22,8 +22,9 @@ const PagesNavigation = () => {
           key={page.name}
           className={cn(
             "flex-1 cursor-pointer flex flex-col items-center justify-center p-2 text-xs transition-colors text-muted-foreground hover:text-foreground",
-            currentPath === page.path &&
-              "text-primary bg-primary/10 cursor-default",
+            (currentPath === page.path ||
+              currentPath.startsWith(`${page.path}/`)) &&
+              "text-primary bg-primary/10 cursor-default"
           )}
           href={page.path}
         >
