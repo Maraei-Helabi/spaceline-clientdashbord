@@ -52,6 +52,8 @@ const Login = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryStep = searchParams.get("step");
+  const queryPhone = searchParams.get("phone") ?? "";
+
   const { mutateAsync, isPending: mutatePending } =
     useTokensRequestOtpForCustomer({
       mutation: {
@@ -74,9 +76,11 @@ const Login = () => {
     resolver: zodResolver(schema),
     mode: "onChange",
     defaultValues: {
-      phone: searchParams.get("phone") ?? "",
+      phone: queryPhone,
       otp: "",
-      step: stepSchema.safeParse(queryStep).data ?? "phone",
+      step: queryPhone
+        ? stepSchema.safeParse(queryStep).data ?? "phone"
+        : "phone",
     },
   });
 
@@ -163,16 +167,32 @@ const Login = () => {
 
         <div className="flex flex-col gap-2">
           {step === "otp" && (
-            <Button
-              onClick={() => {
-                mutateAsync({ phoneNumber });
-              }}
-              variant="outline"
-              disabled={isPending || mutatePending}
-              loading={isPending || mutatePending}
-            >
-              {t("common.reSend")}
-            </Button>
+            <>
+              <p className="text-sm text-muted-foreground">
+                {t("common.phone_number")}: {phoneNumber}
+                <Button
+                  variant="link"
+                  className="px-1.5 text-blue-500"
+                  onClick={() => {
+                    setValue("step", "phone");
+                    setValue("phone", "");
+                    router.replace("/login");
+                  }}
+                >
+                  {t("common.changeNumber")}
+                </Button>
+              </p>
+              <Button
+                onClick={() => {
+                  mutateAsync({ phoneNumber });
+                }}
+                variant="outline"
+                disabled={isPending || mutatePending}
+                loading={isPending || mutatePending}
+              >
+                {t("common.reSend")}
+              </Button>
+            </>
           )}
 
           {step !== "otp" && (
