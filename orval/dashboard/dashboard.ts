@@ -21,6 +21,7 @@ import type {
 } from '@tanstack/react-query';
 
 import type {
+  ApiResponseOfCustomerSpecificStatsDto,
   ErrorResult,
   HttpValidationProblemDetails,
   StatsDto
@@ -111,6 +112,93 @@ export function useDashboardGet<TData = Awaited<ReturnType<typeof dashboardGet>>
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getDashboardGetQueryOptions(options)
+
+  const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+/**
+ * @summary Get statistics for a specific customer.
+ */
+export const dashboardGetCustomerStatistics = (
+    customerId: number,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<ApiResponseOfCustomerSpecificStatsDto>(
+      {url: `/api/v1/dashboard/customer-statistics/${customerId}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+export const getDashboardGetCustomerStatisticsQueryKey = (customerId?: number,) => {
+    return [`/api/v1/dashboard/customer-statistics/${customerId}`] as const;
+    }
+
+    
+export const getDashboardGetCustomerStatisticsQueryOptions = <TData = Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(customerId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDashboardGetCustomerStatisticsQueryKey(customerId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>> = ({ signal }) => dashboardGetCustomerStatistics(customerId, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(customerId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type DashboardGetCustomerStatisticsQueryResult = NonNullable<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>>
+export type DashboardGetCustomerStatisticsQueryError = ErrorType<HttpValidationProblemDetails | ErrorResult>
+
+
+export function useDashboardGetCustomerStatistics<TData = Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ customerId: number, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>,
+          TError,
+          Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useDashboardGetCustomerStatistics<TData = Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ customerId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>,
+          TError,
+          Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useDashboardGetCustomerStatistics<TData = Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ customerId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get statistics for a specific customer.
+ */
+
+export function useDashboardGetCustomerStatistics<TData = Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError = ErrorType<HttpValidationProblemDetails | ErrorResult>>(
+ customerId: number, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardGetCustomerStatistics>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getDashboardGetCustomerStatisticsQueryOptions(customerId,options)
 
   const query = useQuery(queryOptions , queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
