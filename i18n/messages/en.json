@@ -56,7 +56,9 @@
     "runTime": "Connection Time",
     "dataUsed": "Data Used",
     "rouerConectedToStarlink": "Connected to Starlink",
-    "renewalType": "Renewal Type"
+    "renewalType": "Renewal Type",
+    "lastDisconnected": "Last Disconnected",
+    "isBypassed": "Is Bypassed"
   },
   "billingPage": {
     "billing": "Billing",
@@ -151,7 +153,9 @@
     "image_could_not_be_loaded": "Image could not be loaded. Please download to view.",
     "excel_cannot_preview": "Excel files cannot be previewed directly. Please download to view.",
     "word_cannot_preview": "Word documents cannot be previewed directly. Please download to view.",
-    "filetype_cannot_preview": "This file type cannot be previewed. Please download to view."
+    "filetype_cannot_preview": "This file type cannot be previewed. Please download to view.",
+    "yes": "Yes",
+    "no": "No"
   },
   "alerts": {
     "subscriptionAlert": "Subscription Alert",

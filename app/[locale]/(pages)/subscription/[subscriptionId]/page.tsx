@@ -88,7 +88,7 @@ const SubscriptionDetails = ({
             </TabsContent>
 
             <TabsContent className="w-full" value="devices">
-              <DevicesCard Devices={Devices} />
+              <DevicesCard Devices={data} />
             </TabsContent>
           </>
         )}

@@ -56,7 +56,9 @@
     "runTime": "مدة الاتصال",
     "dataUsed": "البيانات المستخدمة",
     "rouerConectedToStarlink": "متصل بستارلينك",
-    "renewalType": "نوع التجديد"
+    "renewalType": "نوع التجديد",
+    "lastDisconnected":"اخر انقطاع",
+    "isBypassed": "تم تجاوز التوجية"
   },
   "billingPage": {
     "billing": "الفواتير",
@@ -146,7 +148,9 @@
     "image_could_not_be_loaded": "تعذر تحميل الصورة. يرجى تحميلها لعرضها.",
     "excel_cannot_preview": "لا يمكن معاينة ملفات Excel مباشرة. يرجى تحميل الملف لعرضه.",
     "word_cannot_preview": "لا يمكن معاينة مستندات Word مباشرة. يرجى تحميل الملف لعرضه.",
-    "filetype_cannot_preview": "لا يمكن معاينة هذا النوع من الملفات. يرجى تحميل الملف لعرضه."
+    "filetype_cannot_preview": "لا يمكن معاينة هذا النوع من الملفات. يرجى تحميل الملف لعرضه.",
+    "yes":"نعم",
+    "no":"لا"
   },
   "alerts": {
     "subscriptionAlert": "تنبيه الاشتراكات",
