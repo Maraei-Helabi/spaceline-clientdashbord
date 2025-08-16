@@ -104,6 +104,7 @@
     "activeSubscription": "Active Subscription",
     "activeSubscriptions": "Active Subscriptions",
     "connectedDevices": "Connected Device",
+    "disconnectedDevices": "Disconnected Device",
     "totalUsage": "Total Usage",
     "monthlyBill": "Total Monthly Bill",
     "currency": "YER"
@@ -160,8 +161,10 @@
   },
   "alerts": {
     "subscriptionAlert": "Subscription Alert",
+    "paymentAlert": "Payment Alert",
     "dataAlert": "Data Usage Alert",
     "suspendedSubscriptions": "There are {count} suspended subscriptions. Please check billing.",
+    "paymentTransactions": "There are {count} payment transactions. Please check billing.",
     "highDataUsage": "Some subscriptions are approaching their monthly data limit."
   },
   "theme": {

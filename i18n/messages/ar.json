@@ -104,6 +104,7 @@
     "activeSubscription": "اشتراك نشط",
     "activeSubscriptions": "الاشتراكات النشطة",
     "connectedDevices": "جهاز متصل",
+    "disconnectedDevices": "جهاز غير متصل",
     "totalUsage": "إجمالي الاستهلاك",
     "monthlyBill": "إجمالي الفاتورة الشهرية",
     "currency": "ريال"
@@ -154,9 +155,11 @@
     "no":"لا"
   },
   "alerts": {
-    "subscriptionAlert": "تنبيه الاشتراكات",
+    "subscriptionAlert": "تنبيهات الاشتراكات",
+    "paymentAlert": "تنبيهات الدفع",
     "dataAlert": "تنبيه استهلاك البيانات",
     "suspendedSubscriptions": "يوجد {count} اشتراك معلق. يرجى مراجعة الفواتير.",
+    "paymentTransactions": "يوجد {count} فاتورة معلقة. يرجى مراجعة الفواتير.",
     "highDataUsage": "بعض الاشتراكات اقتربت من حد الاستهلاك الشهري."
   },
   "theme": {

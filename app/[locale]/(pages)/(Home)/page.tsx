@@ -1,15 +1,13 @@
 import { WelcomeSection } from "./welcome-section";
-import { DashboardStats } from "./dashboard-stats";
 import { DashboardActiveSubscriptions } from "./dashboard-active-subscriptions";
-import { DashboardSubscriptionAlert } from "./dashboard-subscription-alert";
+import DashboardStatistics from "./DashboardStatistics";
 
 export default function HomePage() {
   return (
     <div className="p-4">
       <WelcomeSection />
-      <DashboardStats />
+      <DashboardStatistics/>
       <DashboardActiveSubscriptions />
-      <DashboardSubscriptionAlert />
     </div>
   );
 }

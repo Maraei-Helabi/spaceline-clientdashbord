@@ -43,6 +43,7 @@ import type {
   TerminalKitResult,
   TerminalsCheckTerminalParams,
   TerminalsRemoveKitParams,
+  TerminalsUpdateRouterConfigParams,
   TransferTerminalRequest
 } from '.././model';
 
@@ -790,25 +791,27 @@ export function useTerminalsGetRouterConfig<TData = Awaited<ReturnType<typeof te
  * @summary Update the router configuration for a terminal.
  */
 export const terminalsUpdateRouterConfig = (
-    configId: string,
+    routerId: string,
     routerConfigRequest: BodyType<RouterConfigRequest>,
+    params?: TerminalsUpdateRouterConfigParams,
  options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
 ) => {
       
       
       return customInstance<ApiResponseOfRouterConfigResponseServiceResponse>(
-      {url: `/api/v1/terminals/update-router-config/${configId}`, method: 'POST',
+      {url: `/api/v1/terminals/update-router-config/${routerId}`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: routerConfigRequest, signal
+      data: routerConfigRequest,
+        params, signal
     },
       options);
     }
   
 
 
-export const getTerminalsUpdateRouterConfigMutationOptions = <TError = ErrorType<HttpValidationProblemDetails | ErrorResult>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext>, request?: SecondParameter<typeof customInstance>}
-): UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext> => {
+export const getTerminalsUpdateRouterConfigMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{routerId: string;data: BodyType<RouterConfigRequest>;params?: TerminalsUpdateRouterConfigParams}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{routerId: string;data: BodyType<RouterConfigRequest>;params?: TerminalsUpdateRouterConfigParams}, TContext> => {
 
 const mutationKey = ['terminalsUpdateRouterConfig'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -820,10 +823,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, {configId: string;data: BodyType<RouterConfigRequest>}> = (props) => {
-          const {configId,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, {routerId: string;data: BodyType<RouterConfigRequest>;params?: TerminalsUpdateRouterConfigParams}> = (props) => {
+          const {routerId,data,params} = props ?? {};
 
-          return  terminalsUpdateRouterConfig(configId,data,requestOptions)
+          return  terminalsUpdateRouterConfig(routerId,data,params,requestOptions)
         }
 
         
@@ -833,17 +836,17 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type TerminalsUpdateRouterConfigMutationResult = NonNullable<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>>
     export type TerminalsUpdateRouterConfigMutationBody = BodyType<RouterConfigRequest>
-    export type TerminalsUpdateRouterConfigMutationError = ErrorType<HttpValidationProblemDetails | ErrorResult>
+    export type TerminalsUpdateRouterConfigMutationError = ErrorType<unknown>
 
     /**
  * @summary Update the router configuration for a terminal.
  */
-export const useTerminalsUpdateRouterConfig = <TError = ErrorType<HttpValidationProblemDetails | ErrorResult>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{configId: string;data: BodyType<RouterConfigRequest>}, TContext>, request?: SecondParameter<typeof customInstance>}
+export const useTerminalsUpdateRouterConfig = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>, TError,{routerId: string;data: BodyType<RouterConfigRequest>;params?: TerminalsUpdateRouterConfigParams}, TContext>, request?: SecondParameter<typeof customInstance>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof terminalsUpdateRouterConfig>>,
         TError,
-        {configId: string;data: BodyType<RouterConfigRequest>},
+        {routerId: string;data: BodyType<RouterConfigRequest>;params?: TerminalsUpdateRouterConfigParams},
         TContext
       > => {
 
