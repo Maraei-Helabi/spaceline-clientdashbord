@@ -118,6 +118,7 @@
     "viewAll": "View All",
     "addNew": "Add New",
     "mo": "mo",
+    "changeNumber": "Change Number",
     "subscriptionNumber": "Subscription Number",
     "updatedSuccessful": "Updated successful",
     "status": "Status",
@@ -251,4 +252,5 @@
     "saveChanges": "Save Changes",
     "cancel": "Cancel"
   }
+  
 }

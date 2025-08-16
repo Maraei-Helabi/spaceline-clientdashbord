@@ -29,34 +29,6 @@ const SubscriptionDetails = ({
 
   console.log("subscription details", data);
 
-  const Devices = [
-    {
-      id: 1,
-      starlinkName: "Starlink-Home-001",
-      routerName: "Router-XR500",
-      idStarlink: "SL-123456789",
-      kitNumber: "KIT-987654321",
-      serialNumber: "SN-1122334455",
-      softwareVersionStarlink: "v2.3.1",
-      starLinkStatus: "connected",
-      starLinkRunTime: "72h 15m",
-      starLinkLastUpdated: "2025-08-08T14:35:00Z",
-      idRouter: "RT-55667788",
-      softwareVersionRouter: "v1.5.4",
-      hardwareVersionRouter: "HW-2024",
-      clients: 12,
-      routerStatus: "connected",
-      rouerRunTime: "48h 22m",
-      rouerConectedToStarlink: "connected",
-      dataUsed: 120.5,
-      dataLimit: 200,
-      terminalId: "TERM-99887766",
-      deviceStatus: "Active",
-      renewalDate: "2025-09-01",
-      amount: 99.99,
-      location: "Sana'a, Yemen",
-    },
-  ];
   return (
     <div className="flex w-full items-center flex-col gap-6">
       {/* Back Button */}
