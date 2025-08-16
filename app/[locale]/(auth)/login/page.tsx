@@ -10,7 +10,6 @@ import { useSearchParams } from "next/navigation";
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { Label } from "@/components/ui/label";
@@ -84,26 +83,28 @@ const Login = () => {
   const step = watch("step");
   const phoneNumber = watch("phone");
 
-  const onSubmit = async (data: FormSchema) => {
-    if (data.step === "phone") {
-      const params = new URLSearchParams();
-      await mutateAsync({ phoneNumber: data.phone });
-      params.set("step", "otp");
-      params.set("phone", data.phone);
-      setValue("step", "otp");
-      router.replace(`/login?${params.toString()}`);
-      return;
-    }
-
+  const onValidateOtp = (phone: string, otp: string) => {
     startTransition(async () => {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         redirect: false,
-        otp: data.otp,
-        phone: data.phone,
+        otp,
+        phone,
       });
 
-      router.push("/");
+      if (!result?.error && result?.ok) {
+        router.push("/");
+      }
     });
+  };
+
+  const onSubmit = async (data: FormSchema) => {
+    const params = new URLSearchParams();
+    await mutateAsync({ phoneNumber: data.phone });
+    params.set("step", "otp");
+    params.set("phone", data.phone);
+    setValue("step", "otp");
+    router.replace(`/login?${params.toString()}`);
+    return;
   };
 
   return (
@@ -130,21 +131,28 @@ const Login = () => {
         {step === "otp" && (
           <div dir="ltr" className="flex flex-col items-center">
             <Label className="mb-2">{t("common.otp_code")}</Label>
-            <span className="text-xs mb-4 text-stone-400">{t("common.otp_subTitle")}</span>
+            <span className="text-xs mb-4 text-stone-400">
+              {t("common.otp_subTitle")}
+            </span>
             <Controller
               name="otp"
               render={({ field }) => (
-                <InputOTP {...field} maxLength={6}>
+                <InputOTP
+                  disabled={isPending}
+                  {...field}
+                  maxLength={6}
+                  onChange={(value) => {
+                    field.onChange(value);
+                    if (value.length === 4) {
+                      onValidateOtp(phoneNumber, value);
+                    }
+                  }}
+                >
                   <InputOTPGroup>
                     <InputOTPSlot index={0} />
                     <InputOTPSlot index={1} />
-                  </InputOTPGroup>
-                  <InputOTPSeparator />
-                  <InputOTPGroup>
                     <InputOTPSlot index={2} />
                     <InputOTPSlot index={3} />
-                    {/* <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} /> */}
                   </InputOTPGroup>
                 </InputOTP>
               )}
@@ -167,13 +175,15 @@ const Login = () => {
             </Button>
           )}
 
-          <Button
-            type="submit"
-            disabled={!isValid || isPending || mutatePending}
-            loading={isPending || mutatePending}
-          >
-            {step === "phone" ? t("common.login") : t("common.submit")}
-          </Button>
+          {step !== "otp" && (
+            <Button
+              type="submit"
+              disabled={!isValid || isPending || mutatePending}
+              loading={isPending || mutatePending}
+            >
+              {step === "phone" ? t("common.login") : t("common.submit")}
+            </Button>
+          )}
         </div>
       </form>
     </div>
