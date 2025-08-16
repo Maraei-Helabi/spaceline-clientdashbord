@@ -15,20 +15,23 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const title = locale === 'ar' ? 'ادارة اشتراكات ستارلينك' : 'Starlink Subscription Management';
-  
+  const title =
+    locale === "ar"
+      ? "ادارة اشتراكات ستارلينك"
+      : "Starlink Subscription Management";
+
   const imageUrl =
     process.env.NEXT_PUBLIC_NEXT_AUTH_URL + `/api/og?title=${title}`;
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_NEXT_AUTH_URL ?? ''),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_NEXT_AUTH_URL ?? ""),
     title: {
       default: title,
       template: `%s | ${title}`,
     },
-    icons: { icon: '/logo.svg' },
+    icons: { icon: "/logo.svg" },
     openGraph: {
-      type: 'website',
+      type: "website",
       title,
       images: imageUrl,
     },
@@ -58,6 +61,9 @@ export default async function LocaleLayout({
       className="scroll-smooth"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="manifest" href={`/manifest.${locale}.json`} />
+      </head>
       <body className="min-h-screen bg-white dark:bg-black transition-colors duration-75 ease-in-out">
         <LocaleProvider locale={locale}>
           <ThemeProvider
